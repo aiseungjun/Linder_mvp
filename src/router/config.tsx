@@ -1,5 +1,7 @@
 
-import { RouteObject } from 'react-router-dom';
+// import { RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router';
+
 import HomePage from '../pages/home/page';
 import AppPage from '../pages/app/page';
 import NotFound from '../pages/NotFound';
