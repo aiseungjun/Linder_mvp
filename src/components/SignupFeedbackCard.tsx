@@ -5,7 +5,7 @@ const SignupFeedbackCard: React.FC = () => {
   return (
     <section
       className="mx-auto max-w-xl px-4
-                 mt-28 md:mt-32 lg:mt-0"  // ← 여기만 바뀜 (헤더 높이에 맞춰 조절)
+                 mt-8 md:mt-10 lg:mt-12"  // ← 여기만 바뀜 (헤더 높이에 맞춰 조절)
     >
       <div className="rounded-2xl border border-zinc-200/70 bg-white/70 shadow-lg backdrop-blur p-6 sm:p-8">
         <div className="flex items-start gap-3">
