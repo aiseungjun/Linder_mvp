@@ -19,7 +19,7 @@ const PreviewSection = () => {
             <div className="space-y-8">
               <div className="relative">
                 <img 
-                  src="https://readdy.ai/api/search-image?query=Modern%20web%20application%20preview%20screen%20showing%20reading%20list%20interface%2C%20clean%20dashboard%20with%20article%20cards%20and%20organization%20features%2C%20minimalist%20design%20with%20white%20background%2C%20professional%20UI%20elements%20including%20search%20bar%20and%20filter%20tabs%2C%20contemporary%20web%20design%20aesthetic&width=800&height=500&seq=preview-dashboard-v2&orientation=landscape"
+                  src="https://i.ibb.co/rf5XSnBQ/2025-11-02-225546.jpg"
                   alt="ReadLater+ 구현 미리보기"
                   className="w-full max-w-2xl mx-auto rounded-xl shadow-2xl border border-gray-200"
                 />

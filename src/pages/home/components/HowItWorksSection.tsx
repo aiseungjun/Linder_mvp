@@ -5,19 +5,19 @@ const HowItWorksSection = () => {
       number: '01',
       title: '링크 붙여넣기',
       description: '읽고 싶은 웹 페이지의 URL을 간단히 붙여넣기만 하면 됩니다.',
-      image: 'https://readdy.ai/api/search-image?query=Clean%20minimalist%20browser%20interface%20showing%20URL%20input%20field%20with%20paste%20action%2C%20modern%20web%20form%20design%20with%20white%20background%2C%20subtle%20shadows%20and%20rounded%20corners%2C%20copy-paste%20icon%20and%20cursor%20indicator%2C%20professional%20user%20interface%20with%20clean%20typography&width=400&height=300&seq=step1-url-input&orientation=landscape'
+      image: 'https://i.ibb.co/LhCQhdVC/2025-11-02-232102.jpg'
     },
     {
       number: '02',
       title: 'AI 요약/태깅',
       description: 'AI가 자동으로 내용을 요약하고 적절한 주제 태그를 생성합니다.',
-      image: 'https://readdy.ai/api/search-image?query=Modern%20AI%20processing%20interface%20with%20text%20analysis%20visualization%2C%20clean%20dashboard%20showing%20automatic%20content%20summarization%20and%20tag%20generation%2C%20minimalist%20design%20with%20progress%20indicators%2C%20blue%20and%20purple%20accent%20colors%2C%20professional%20machine%20learning%20interface&width=400&height=300&seq=step2-ai-processing&orientation=landscape'
+      image: 'https://i.ibb.co/nMXzntKc/2025-11-02-231755.jpg'
     },
     {
       number: '03',
       title: '링크 관리',
       description: '정리된 글들을 읽음/안 읽음 및 주제로 분류하고, 리마인드 날짜를 설정합니다.',
-      image: 'https://readdy.ai/api/search-image?query=Organized%20content%20management%20dashboard%20with%20card%20layout%20showing%20reading%20list%2C%20clean%20white%20interface%20with%20categorized%20articles%2C%20toggle%20buttons%20for%20read%20and%20unread%20status%2C%20reminder%20icons%20and%20tag%20labels%2C%20modern%20task%20management%20design&width=400&height=300&seq=step3-list-management&orientation=landscape'
+      image: 'https://i.ibb.co/TBb31XB2/2025-11-02-232423.jpg'
     },
     {
       number: '04',
@@ -58,15 +58,28 @@ const HowItWorksSection = () => {
                   {step.description}
                 </p>
               </div>
-              
-              <div className="flex-1">
-                <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-shadow duration-300">
-                  <img 
+                  
+              <div className="flex-1 max-w-xl w-full">
+                <div
+                  className="
+                    relative rounded-2xl shadow-xl border border-gray-200
+                    hover:shadow-2xl transition-shadow duration-300
+                    bg-white overflow-hidden
+                    aspect-[4/3]
+                    flex items-center justify-center
+                  "
+                >
+                  <img
                     src={step.image}
                     alt={step.title}
-                    className="w-full h-80 object-cover object-top"
+                    className="
+                      max-w-full max-h-full
+                      object-contain
+                      object-center
+                      block
+                    "
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                  <div className="absolute inset-0 pointer-events-none rounded-2xl shadow-[0_40px_80px_-10px_rgb(0_0_0_/_0.1)]" />
                 </div>
               </div>
             </div>
