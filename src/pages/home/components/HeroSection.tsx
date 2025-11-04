@@ -76,7 +76,7 @@ const HeroSection = () => {
                       onClick={scrollToPreview}
                       className="block w-full text-left px-2 py-1 text-xs text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors cursor-pointer whitespace-nowrap"
                     >
-                      미리 보기
+                      사용 하기
                     </button>
                   </div>
                 )}
@@ -128,11 +128,11 @@ const HeroSection = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
+              <Link id="go-app"
                 to="/app" 
                 className="bg-indigo-600 text-white px-8 py-4 text-lg font-medium hover:bg-indigo-700 transition-all duration-200 whitespace-nowrap rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
-                구현 미리보기
+                바로 사용하기
               </Link>
               <button 
                 onClick={scrollToFeatures}

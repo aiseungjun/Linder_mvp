@@ -233,6 +233,12 @@
     $('.simple-popup-close, .simple-popup-overlay').trigger('click');
   });
 
+    $(document).on('click', '#go-app', function () {
+    var data = JSON.stringify({ id: getUVfromCookie(), time_stamp: getTimeStamp() });
+    axios.get(addrScript + '?action=insert&table=vips&data=' + encodeURIComponent(data));
+  });
+  
+
     </script>
 
 

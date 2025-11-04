@@ -11,7 +11,7 @@ const HowItWorksSection = () => {
       number: '02',
       title: 'AI 요약/태깅',
       description: 'AI가 자동으로 내용을 요약하고 적절한 주제 태그를 생성합니다.',
-      image: 'https://i.ibb.co/nMXzntKc/2025-11-02-231755.jpg'
+      image: 'https://i.ibb.co/d0bpbbFK/2025-11-04-141552.jpg'
     },
     {
       number: '03',

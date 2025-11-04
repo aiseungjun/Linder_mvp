@@ -13,7 +13,7 @@ const SignupFeedbackCard: React.FC = () => {
           <div>
             <h2 className="text-xl font-semibold tracking-tight">알림 신청 & 피드백</h2>
             <p className="mt-1 text-sm text-zinc-600">
-              이메일을 남기면 런칭 소식을 보내드리고, 피드백을 서비스에 반영할게요.
+              이메일을 남기면 최초 이용자 혜택과 런칭 소식을 보내드리고, 피드백을 서비스에 반영할게요.
             </p>
           </div>
         </div>
