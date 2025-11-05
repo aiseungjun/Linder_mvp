@@ -101,6 +101,38 @@
         display:flex;align-items:center;justify-content:center;
         box-shadow:0 6px 16px rgba(0,0,0,.12);color:#111827
       }
+      @media (max-width: 991.98px){
+        #section_1 .container{ padding-top: clamp(384px, 12vw, 512px); }
+        #section_2{ margin-top: clamp(384px, 12vw, 512px); } /* About Linder를 더 아래로 */
+      }
+      .equal-pair{
+        width:100%;
+        display:block;
+        object-fit:cover;   /* 높이를 강제로 맞출 때 박스 채우기 */
+      }
+      .member-block-info{
+        display:flex;
+        align-items:center;       /* 수직 중앙 */
+        justify-content:center;   /* 수평 중앙 */
+        text-align:center;
+      }
+        /* HOW IT WORKS 4장의 이미지 비율/높이 통일 */
+      .events-section .custom-block-image-wrap{
+        position: relative;     /* 우하단 아이콘 absolute 기준 */
+        aspect-ratio: 4 / 3;    /* 원하면 16/9, 1/1 등으로 변경 */
+        overflow: hidden;
+        border-radius: 12px;    /* 선택 */
+      }
+
+      .events-section .custom-block-image-wrap a{
+        display:block; width:100%; height:100%;
+      }
+
+      .events-section .custom-block-image{
+        width:100%; height:100%;
+        object-fit: cover;      /* 중앙 기준으로 채우기 */
+      }
+
     </style>
   </head>
 
@@ -271,29 +303,29 @@
             <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
               <div class="member-block">
                 <div class="member-block-image-wrap">
-                  <img src="images/members/portrait-young-handsome-businessman-wearing-suit-standing-with-crossed-arms-with-isolated-studio-white-background.jpg" class="member-block-image img-fluid" alt="">
+                  <img src="https://i.ibb.co/9k0G0HVK/2025-11-06-043931.jpg" class="member-block-image img-fluid equal-pair" alt="">
                   <ul class="social-icon">
                     <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
                     <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
                   </ul>
                 </div>
                 <div class="member-block-info d-flex align-items-center text-center">
-                  <h5>새로운 연구 분야의 여러 논문들을 수월하게 읽었어요!</h5>
+                  <h5>새로운 연구 분야의 여러 논문들을<br>수월하게 읽었어요!</h5>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-12">
+            <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
               <div class="member-block">
                 <div class="member-block-image-wrap">
-                  <img src="images/members/successful-asian-lady-boss-red-blazer-holding-clipboard-with-documens-pen-working-looking-happy-white-background.jpg" class="member-block-image img-fluid" alt="">
+                  <img src="https://i.ibb.co/r2GJTzrJ/2025-11-06-042554.jpg" class="member-block-image img-fluid equal-pair" alt="">
                   <ul class="social-icon">
                     <li class="social-icon-item"><a href="#" class="social-icon-link bi-linkedin"></a></li>
                     <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
                   </ul>
                 </div>
                 <div class="member-block-info d-flex align-items-center text-center">
-                  <h5>보려고 했던 애니메이션이 기억났어요!</h5>
+                  <h5>깐부치킨을 먹으며 보려고 했던<br>애니메이션이 기억났어요!</h5>
                 </div>
               </div>
             </div>
@@ -317,7 +349,7 @@
             <div class="col-lg-8 col-12">
               <h2 class="mb-lg-3">뉴스레터 구독</h2>
               <div class="section-bg-image-block">
-                <p class="text-center">이메일을 남겨주시면 현재 이용자들의 <strong>URL 이용 통계</strong>(주제 분포, 월간 저장/읽음 횟수, 읽음 달성도 등)를 정리해 보내드립니다.</p>
+                <p class="text-center">이메일을 남겨주시면 현재 이용자들의 <strong>URL 이용 통계</strong>(주제 분포, 월간 저장/읽음 횟수, 읽음 달성도 등), 최신 기능 및 사용법을 레터로 정리해서 보내드립니다.</p>
                 <form action="#" method="get" class="custom-form mt-lg-4 mt-2" role="form">
                   <div class="input-group input-group-lg">
                     <span class="input-group-text bi-envelope" id="basic-addon1"></span>
@@ -407,7 +439,7 @@
               </div>
               <div class="col-lg-4 col-md-8 col-12 order-1">
                 <div class="custom-block-image-wrap">
-                  <a href="#"><img src="https://i.ibb.co/LhCQhdVC/2025-11-02-232102.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
+                  <a href="#"><img src="https://i.ibb.co/5hdgfdyh/2025-11-06-052607.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
                 </div>
               </div>
               <div class="col-lg-6 col-12 order-3">
@@ -429,7 +461,7 @@
               </div>
               <div class="col-lg-4 col-md-8 col-12 order-1">
                 <div class="custom-block-image-wrap">
-                  <a href="#"><img src="https://i.ibb.co/d0bpbbFK/2025-11-04-141552.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
+                  <a href="#"><img src="https://i.ibb.co/gKBPx8h/2025-11-06-052712.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
                 </div>
               </div>
               <div class="col-lg-6 col-12 order-3">
@@ -451,7 +483,7 @@
               </div>
               <div class="col-lg-4 col-md-8 col-12 order-1">
                 <div class="custom-block-image-wrap">
-                  <a href="#"><img src="https://i.ibb.co/TBb31XB2/2025-11-02-232423.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
+                  <a href="#"><img src="https://i.ibb.co/NnKRYFrD/2025-11-06-052420.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
                 </div>
               </div>
               <div class="col-lg-6 col-12 order-3">
@@ -473,7 +505,7 @@
               </div>
               <div class="col-lg-4 col-md-8 col-12 order-1">
                 <div class="custom-block-image-wrap">
-                  <a href="#"><img src="https://readdy.ai/api/search-image?query=Modern%20notification%20system%20interface%20showing%20reminder%20alerts%20and%20scheduling%2C%20clean%20mobile%20and%20desktop%20notification%20design%20with%20calendar%20integration%2C%20bell%20icons%20and%20time%20indicators%2C%20professional%20reminder%20management%20dashboard%20with%20clean%20white%20background&width=400&height=300&seq=step4-reminder-system&orientation=landscape" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
+                  <a href="#"><img src="https://i.ibb.co/VcfN46HG/2025-11-06-052811.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
                 </div>
               </div>
               <div class="col-lg-6 col-12 order-3">
@@ -494,17 +526,17 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-7 col-12">
-              <h2 class="mb-4 pb-2 text-center">시작하기</h2>
+              <h2 class="mb-4 pb-2 text-center">Linder 시작하기</h2>
 
               <!-- 요청 이미지(업로드 카드 스타일) -->
               <div class="preview-image-wrap mb-4">
-                <img src="https://i.ibb.co/rf5XSnBQ/2025-11-02-225546.jpg" alt="ReadLater+ preview">
+                <img src="https://i.ibb.co/6R0gQDDh/2025-11-06-050958.jpg" alt="ReadLater+ preview">
                 <i class="custom-block-icon bi-link"></i>
               </div>
 
               <div class="custom-form contact-form">
                 <p class="mb-4 text-center">아래 버튼으로 실제 동작 모습을 확인하세요.</p>
-                <a href="app.html" class="btn custom-btn w-100">Linder 시작하기</a>
+                <a href="app.html" class="btn custom-btn w-100">Linder 시작!</a>
               </div>
             </div>
           </div>
@@ -528,27 +560,29 @@
             </a>
           </div>
 
-          <div class="col-lg-3 col-12">
-            <h5 class="site-footer-title mb-4">Join Us</h5>
-            <p class="d-flex border-bottom pb-3 mb-3 me-lg-3">
-              <span>Mon-Fri</span>
-              6:00 AM - 6:00 PM
-            </p>
-            <p class="d-flex me-lg-3">
-              <span>Sat-Sun</span>
-              6:30 AM - 8:30 PM
-            </p>
-            <br>
-            <p class="copyright-text">Copyright © Linder</p>
+          <div class="col-lg-6 col-12 ms-lg-auto">
+            <div class="footer-cta d-flex flex-column align-items-center text-center">
+              <h5 class="site-footer-title mb-3">Join Us</h5>
+
+              <ul class="social-icon justify-content-center gap-3 my-3">
+                <li class="social-icon-item">
+                  <a href="#" class="social-icon-link bi-instagram" aria-label="Instagram"></a>
+                </li>
+                <li class="social-icon-item">
+                  <a href="#" class="social-icon-link bi-twitter" aria-label="Twitter/X"></a>
+                </li>
+                <li class="social-icon-item">
+                  <a href="tel:010-020-0340" class="social-icon-link bi-telephone" aria-label="Call"></a>
+                </li>
+                <li class="social-icon-item">
+                  <a href="mailto:hello@linder.ai" class="social-icon-link bi-envelope" aria-label="Email"></a>
+                </li>
+              </ul>
+
+              <p class="copyright-text mb-0">Copyright © Linder</p>
+            </div>
           </div>
 
-          <div class="col-lg-2 col-12 ms-auto">
-            <ul class="social-icon mt-lg-5 mt-3 mb-4">
-              <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
-              <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
-              <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-            </ul>
-          </div>
 
         </div>
       </div>
@@ -559,6 +593,31 @@
         </path>
       </svg>
     </footer>
+
+    <script>
+      (function(){
+        function syncToSmallerHeight(){
+          const imgs = Array.from(document.querySelectorAll('.equal-pair'));
+          if (imgs.length < 2) return;
+
+          // 높이 초기화 후 현재 렌더된 높이 측정
+          imgs.forEach(i => i.style.height = ''); 
+          // 각 이미지의 현재 표시 높이 계산 (반응형 폭 반영)
+          const heights = imgs.map(i => i.clientHeight || i.getBoundingClientRect().height);
+          const minH = Math.min(...heights);
+
+          // 둘 다 작은 쪽 높이에 맞추기
+          imgs.forEach(i => i.style.height = minH + 'px');
+            }
+          imgs.forEach(i => {
+            const info = i.closest('.member-block')?.querySelector('.member-block-info');
+            if (info) info.style.minHeight = minH + 'px';
+          });
+
+        window.addEventListener('load', syncToSmallerHeight);
+        window.addEventListener('resize', syncToSmallerHeight);
+      })();
+    </script>
 
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
