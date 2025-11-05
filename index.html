@@ -1,173 +1,682 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta Tags -->
-    <title>Linder - 웹 아티클 스마트 관리 도구</title>
-    <meta name="description" content="다시 보고 싶은 글들을 한 곳에 저장하고 AI 요약, 주제 태깅, 리마인드로 체계적으로 관리하세요. 개인 생산성을 높이는 스마트한 읽기 도구 Linder" />
-    <meta name="keywords" content="웹 아티클 관리, 북마크 정리, AI 요약, 읽기 도구, 개인 생산성" />
-    <meta name="author" content="Linder" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://linder.com/" />
-    <meta property="og:title" content="Linder - 웹 아티클 스마트 관리 도구" />
-    <meta property="og:description" content="다시 보고 싶은 글들을 한 곳에 저장하고 AI 요약, 주제 태깅, 리마인드로 체계적으로 관리하세요." />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="Linder - 웹 아티클 스마트 관리 도구" />
-    <meta property="twitter:description" content="다시 보고 싶은 글들을 한 곳에 저장하고 AI 요약, 주제 태깅, 리마인드로 체계적으로 관리하세요." />
-    
-    <!-- Fonts -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Linder - 다시 보고 싶은 링크를 모으고, AI 요약/태그와 리마인드로 읽기 경험을 개선합니다.">
+    <meta name="author" content="Linder">
+    <title>Linder — ReadLater+</title>
+
+    <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://linder.com/" />
-    
-    <!-- Last Modified -->
-    <meta name="last-modified" content="2025-01-08" />
-    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet">
+
+    <!-- Overrides -->
     <style>
-      body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      /* 글꼴/크기 */
+      body { font-size: 1.12rem; }
+      h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+      h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
+      h5 { font-size: 1.15rem; }
+      .navbar-brand-text small { font-size: 1rem; }
+
+      /* 섹션 제목 중앙 정렬 */
+      .about-section h2,
+      .membership-section h2,
+      .events-section h2,
+      .contact-section h2,
+      .section-bg-image h2 { text-align:center; width:100%; }
+
+      /* 로고 */
+      .brand-mark{
+        display:inline-flex;align-items:center;justify-content:center;
+        width:40px;height:40px;border-radius:12px;
+        background:linear-gradient(135deg,#f2f4f8,#e6eefc);
+        border:1px solid rgba(0,0,0,.06);margin-right:.6rem
       }
-      
-      .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+      .brand-mark i{font-size:1.2rem;color:#2b2f36}
+
+      /* 히어로 버튼(좌우 비슷한 크기) */
+      .custom-btn-group .btn,
+      .custom-btn-group .link.smoothscroll{
+        font-size:1.125rem;
+        padding:.85rem 1.2rem;
+      }
+
+      /* 알림/피드백 카드를 우측 상단으로 살짝 */
+      @media (min-width: 992px){
+        .feedback-card-raise{
+          transform: translate(12px, -18px);
+        }
+      }
+      @media (min-width: 1200px){
+        .feedback-card-raise{
+          transform: translate(18px, -28px);
+        }
+      }
+
+      /* 섹션 간격 */
+      .section-padding{padding-top:110px;padding-bottom:110px}
+
+      /* --- 핵심 기능 카드 --- */
+      .feature-grid .card{
+        border:1px solid rgba(0,0,0,.06);
+        border-radius:18px;
+        transition:transform .18s ease, box-shadow .2s ease, border-color .2s ease;
+        text-align:center;
+        height:100%;
+      }
+      .feature-grid .card:hover{
+        transform:translateY(-6px);
+        box-shadow:0 14px 28px rgba(0,0,0,.08);
+        border-color:rgba(0,0,0,.12);
+      }
+      .feature-icon{
+        width:72px;height:72px;border-radius:18px;
+        display:flex;align-items:center;justify-content:center;
+        margin:0 auto 18px auto;
+      }
+      .feature-icon i{font-size:28px;color:#fff}
+      .grad-indigo{background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+      .grad-cyan{background:linear-gradient(135deg,#0ea5e9,#06b6d4)}
+      .grad-green{background:linear-gradient(135deg,#22c55e,#14b8a6)}
+      .grad-orange{background:linear-gradient(135deg,#f97316,#ef4444)}
+
+      .feature-title{font-size:1.25rem;margin-bottom:.35rem}
+      .feature-desc{color:#64748b}
+
+      /* Start 섹션 이미지 업로드 스타일(Events의 카드 느낌 재사용) */
+      .preview-image-wrap{
+        position:relative;border-radius:16px;overflow:hidden;
+        border:1px solid rgba(0,0,0,.06);
+      }
+      .preview-image-wrap img{display:block;width:100%;height:auto}
+      .preview-image-wrap i.custom-block-icon{
+        position:absolute;right:12px;bottom:12px;
+        background:#fff;border-radius:50%;width:40px;height:40px;
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:0 6px 16px rgba(0,0,0,.12);color:#111827
       }
     </style>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
 
-    <!-- For user log -->
-      
+  <body>
+    <main>
+
+      <!-- NAV -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <span class="brand-mark"><i class="bi-file-earmark-text"></i></span>
+            <span class="navbar-brand-text">
+              Linder
+              <small>ReadLater+</small>
+            </span>
+          </a>
+
+          <div class="d-lg-none ms-auto me-3">
+            <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Member Login</a>
+          </div>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-lg-auto">
+              <li class="nav-item"><a class="nav-link click-scroll" href="#section_1">Home</a></li>
+              <li class="nav-item"><a class="nav-link click-scroll" href="#section_2">About</a></li>
+              <li class="nav-item"><a class="nav-link click-scroll" href="#section_3">Features</a></li>
+              <li class="nav-item"><a class="nav-link click-scroll" href="#section_4">How it works</a></li>
+              <li class="nav-item"><a class="nav-link click-scroll" href="#section_5">Start</a></li>
+            </ul>
+
+            <div class="d-none d-lg-block ms-lg-3">
+              <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Member Login</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- OFFCANVAS (원본 유지) -->
+      <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Member Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body d-flex flex-column">
+          <form class="custom-form member-login-form" action="#" method="post" role="form">
+            <div class="member-login-form-body">
+              <div class="mb-4">
+                <label class="form-label mb-2" for="member-login-number">Membership No.</label>
+                <input type="text" id="member-login-number" class="form-control" placeholder="11002560" required>
+              </div>
+              <div class="mb-4">
+                <label class="form-label mb-2" for="member-login-password">Password</label>
+                <input type="password" id="member-login-password" pattern="[0-9a-zA-Z]{4,10}" class="form-control" placeholder="Password" required="">
+              </div>
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">Remember me</label>
+              </div>
+              <div class="col-lg-5 col-md-7 col-8 mx-auto">
+                <button type="submit" class="form-control">Login</button>
+              </div>
+              <div class="text-center my-4">
+                <a href="#">Forgotten password?</a>
+              </div>
+            </div>
+          </form>
+
+          <div class="mt-auto mb-5">
+            <p>
+              <strong class="text-white me-3">Any Questions?</strong>
+              <a href="tel: 010-020-0340" class="contact-link">010-020-0340</a>
+            </p>
+          </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#3D405B" fill-opacity="1"
+            d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+          </path>
+        </svg>
+      </div>
+
+      <!-- HERO -->
+      <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+        <div class="section-overlay"></div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#3D405B" fill-opacity="1"
+            d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z">
+          </path>
+        </svg>
+
+        <div class="container">
+          <div class="row">
+
+            <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+              <h2 class="text-white">ReadLater+ by Linder</h2>
+              <h1 class="text-white mb-4 pb-2" style="line-height:1.2;">
+                <span>다시 보고 싶은 링크,</span><br>
+                <b>잊기 전에</b> 모아두세요.
+              </h1>
+              <p class="text-white-50 mb-4">
+                여러 탭과 북마크에 파묻혀 잊어버리는 블로그, 논문 등의 링크들을 보기 쉽게 저장하고,
+                AI 요약과 태그를 제공하고, 알림으로 다시 보게 도와줍니다.
+              </p>
+                <div class="custom-btn-group d-flex justify-content-center">
+                <a id="go-app" href="app.html" class="btn custom-btn">시작하기</a>
+                </div>
+            </div>
+
+            <!--  리뷰/피드백 카드 -->
+            <div class="col-lg-6 col-12">
+              <div class="rounded-2xl border border-1 bg-white p-4 p-md-5 shadow feedback-card-raise ms-lg-auto" style="max-width:560px">
+                <div class="d-flex align-items-start gap-3 mb-3">
+                  <i class="bi-envelope-plus" style="font-size:1.6rem;"></i>
+                  <div>
+                    <h3 class="h5 mb-1">알림 신청 & 피드백</h3>
+                    <p class="text-muted mb-0">이메일을 남기면 최초 이용자 혜택과 런칭 소식을 보내드리고, 피드백을 서비스에 반영할게요.</p>
+                  </div>
+                </div>
+                <form onsubmit="event.preventDefault(); window.location.href='app.html';">
+                  <div class="mb-3">
+                    <label class="form-label">이메일</label>
+                    <input id="submit-email" type="email" class="form-control" placeholder="example@domain.com" required>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">후기 / 조언</label>
+                    <textarea id="submit-advice" rows="5" class="form-control" placeholder="서비스에 대한 조언을 남겨주세요"></textarea>
+                  </div>
+                  <button id="submitrev" type="button" class="btn btn-dark w-100">지금 제출!</button>
+                </form>
+              </div>
+            </div>
+            <!-- /리뷰/피드백 카드 -->
+
+          </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#ffffff" fill-opacity="1"
+            d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+          </path>
+        </svg>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="about-section section-padding" id="section_2">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-12">
+              <h2 class="mb-lg-5 mb-4">About Linder</h2>
+            </div>
+
+            <div class="col-lg-5 col-12 me-auto mb-4 mb-lg-0">
+              <h3 class="mb-3">왜 Linder 인가요?</h3>
+              <p><strong>다시 보고 싶은 링크, 잊기 전에 모아두세요.</strong> 여러 탭과 북마크에 파묻혀 잊어버리는 블로그, 논문 등의 링크들을 보기 쉽게 저장하고, AI 요약과 태그를 제공하며, 알림으로 다시 보게 도와줍니다.</p>
+              <p>Linder는 링크를 단순히 보관하는 것을 넘어, 요약/태깅/리마인드로 <strong>읽음까지의 여정</strong>을 끝까지 동행합니다.</p>
+            </div>
+
+            <!-- 템플릿 이미지 유지 -->
+            <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
+              <div class="member-block">
+                <div class="member-block-image-wrap">
+                  <img src="images/members/portrait-young-handsome-businessman-wearing-suit-standing-with-crossed-arms-with-isolated-studio-white-background.jpg" class="member-block-image img-fluid" alt="">
+                  <ul class="social-icon">
+                    <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
+                    <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
+                  </ul>
+                </div>
+                <div class="member-block-info d-flex align-items-center text-center">
+                  <h5>새로운 연구 분야의 여러 논문들을 수월하게 읽었어요!</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12">
+              <div class="member-block">
+                <div class="member-block-image-wrap">
+                  <img src="images/members/successful-asian-lady-boss-red-blazer-holding-clipboard-with-documens-pen-working-looking-happy-white-background.jpg" class="member-block-image img-fluid" alt="">
+                  <ul class="social-icon">
+                    <li class="social-icon-item"><a href="#" class="social-icon-link bi-linkedin"></a></li>
+                    <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
+                  </ul>
+                </div>
+                <div class="member-block-info d-flex align-items-center text-center">
+                  <h5>보려고 했던 애니메이션이 기억났어요!</h5>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section class="section-bg-image">
+        <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg">
+          <path fill="rgba(255, 255, 255, 1)" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"></path>
+          <path fill="rgba(255, 255, 255, 1)" d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z"></path>
+          <path fill="rgba(255, 255, 255, 1)" d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z"></path>
+          <path fill="rgba(255, 255, 255, 1)" d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z"></path>
+          <path fill="rgba(255, 255, 255, 1)" d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z"></path>
+        </svg>
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 col-12">
+              <h2 class="mb-lg-3">뉴스레터 구독</h2>
+              <div class="section-bg-image-block">
+                <p class="text-center">이메일을 남겨주시면 현재 이용자들의 <strong>URL 이용 통계</strong>(주제 분포, 월간 저장/읽음 횟수, 읽음 달성도 등)를 정리해 보내드립니다.</p>
+                <form action="#" method="get" class="custom-form mt-lg-4 mt-2" role="form">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-text bi-envelope" id="basic-addon1"></span>
+                    <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
+                    <button type="submit" class="form-control">Subscribe</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg">
+          <path fill="rgba(255, 255, 255, 1)" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"></path>
+          <path fill="rgba(255, 255, 255, 1)" d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z"></path>
+          <path fill="rgba(255, 255, 255, 1)" d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z"></path>
+          <path fill="rgba(255, 255, 255, 1)" d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z"></path>
+          <path fill="rgba(255, 255, 255, 1)" d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z"></path>
+        </svg>
+      </section>
+
+      <!-- FEATURES -->
+      <section class="membership-section section-padding" id="section_3">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center mx-auto mb-4">
+              <h2><span>핵심 기능</span> of Linder</h2>
+              <p class="text-muted mt-2">간단하지만 강력한 기능들로 여러분의 읽기 경험을 혁신합니다</p>
+            </div>
+
+            <div class="feature-grid">
+              <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="card p-4">
+                    <div class="feature-icon grad-indigo"><i class="bi-bookmark"></i></div>
+                    <div class="feature-title">한 줄 URL 저장</div>
+                    <p class="feature-desc mb-0">URL 붙여넣기만 하면 끝! 본문/메타를 읽어 자동 요약.</p>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="card p-4">
+                    <div class="feature-icon grad-cyan"><i class="bi-tag"></i></div>
+                    <div class="feature-title">주제 태깅</div>
+                    <p class="feature-desc mb-0">요리·과학·딥러닝·프로그래밍 등으로 자동 분류.</p>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="card p-4">
+                    <div class="feature-icon grad-green"><i class="bi-check2-circle"></i></div>
+                    <div class="feature-title">읽은 문서 정리</div>
+                    <p class="feature-desc mb-0">링크/요약에 바로 접근, 버튼 한 번으로 ‘읽음’ 처리.</p>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="card p-4">
+                    <div class="feature-icon grad-orange"><i class="bi-alarm"></i></div>
+                    <div class="feature-title">리마인드</div>
+                    <p class="feature-desc mb-0">설정한 기간 후 안 읽은 문서를 알림으로 리마인드.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 text-center">
+                <p class="mb-0">
+                  인터넷에는 전공 공부 블로그, 정주행 웹툰, 커뮤니티 레시피 등 나중에 보고 싶은 링크가 넘칩니다.
+                  탭/북마크에 쌓아두면 잊기 쉽죠. <br> <strong>Linder</strong>는 요약·태깅·리마인드로 <strong>‘읽음 완주’</strong>를 돕는 개인 생산성 도구입니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS (이미지는 이미 적용되어 있음) -->
+      <section class="events-section section-bg section-padding" id="section_4">
+        <div class="container">
+          <div class="row">
+            <div class="col-12"><h2 class="mb-lg-3">어떻게 사용하나요?</h2><p class="text-muted text-center">네 단계로 완성되는 스마트한 링크 관리 시스템</p></div>
+
+            <!-- 01 -->
+            <div class="row custom-block mb-3">
+              <div class="col-lg-2 col-md-4 col-12 order-2 order-md-0">
+                <div class="custom-block-date-wrap d-flex d-lg-block d-md-block align-items-center mt-3">
+                  <h6 class="custom-block-date mb-lg-1 mb-0 me-3 me-lg-0 me-md-0">01</h6>
+                  <strong class="text-white">Step</strong>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-8 col-12 order-1">
+                <div class="custom-block-image-wrap">
+                  <a href="#"><img src="https://i.ibb.co/LhCQhdVC/2025-11-02-232102.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12 order-3">
+                <div class="custom-block-info mt-2 mt-lg-0">
+                  <a href="#" class="events-title mb-3"><strong>링크 붙여넣기</strong></a>
+                  <p class="mb-0">읽고 싶은 웹 페이지의 URL을 간단히 붙여넣기만 하면 됩니다.</p>
+                  <div class="d-flex flex-wrap border-top mt-4 pt-3"><div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">미리보기</a></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02 -->
+            <div class="row custom-block custom-block-bg mb-3">
+              <div class="col-lg-2 col-md-4 col-12 order-2 order-md-0">
+                <div class="custom-block-date-wrap d-flex d-lg-block d-md-block align-items-center mt-3">
+                  <h6 class="custom-block-date mb-lg-1 mb-0 me-3 me-lg-0 me-md-0">02</h6>
+                  <strong class="text-white">Step</strong>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-8 col-12 order-1">
+                <div class="custom-block-image-wrap">
+                  <a href="#"><img src="https://i.ibb.co/d0bpbbFK/2025-11-04-141552.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12 order-3">
+                <div class="custom-block-info mt-2 mt-lg-0">
+                  <a href="#" class="events-title mb-3"><strong>AI 요약/태깅</strong></a>
+                  <p class="mb-0">AI가 자동으로 내용을 요약하고 적절한 주제 태그를 생성합니다.</p>
+                  <div class="d-flex flex-wrap border-top mt-4 pt-3"><div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">미리보기</a></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 03 -->
+            <div class="row custom-block mb-3">
+              <div class="col-lg-2 col-md-4 col-12 order-2 order-md-0">
+                <div class="custom-block-date-wrap d-flex d-lg-block d-md-block align-items-center mt-3">
+                  <h6 class="custom-block-date mb-lg-1 mb-0 me-3 me-lg-0 me-md-0">03</h6>
+                  <strong class="text-white">Step</strong>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-8 col-12 order-1">
+                <div class="custom-block-image-wrap">
+                  <a href="#"><img src="https://i.ibb.co/TBb31XB2/2025-11-02-232423.jpg" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12 order-3">
+                <div class="custom-block-info mt-2 mt-lg-0">
+                  <a href="#" class="events-title mb-3"><strong>링크 관리</strong></a>
+                  <p class="mb-0">정리된 글들을 읽음/안 읽음 및 주제로 분류하고, 리마인드 날짜를 설정합니다.</p>
+                  <div class="d-flex flex-wrap border-top mt-4 pt-3"><div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">미리보기</a></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 04 -->
+            <div class="row custom-block custom-block-bg">
+              <div class="col-lg-2 col-md-4 col-12 order-2 order-md-0">
+                <div class="custom-block-date-wrap d-flex d-lg-block d-md-block align-items-center mt-3">
+                  <h6 class="custom-block-date mb-lg-1 mb-0 me-3 me-lg-0 me-md-0">04</h6>
+                  <strong class="text-white">Step</strong>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-8 col-12 order-1">
+                <div class="custom-block-image-wrap">
+                  <a href="#"><img src="https://readdy.ai/api/search-image?query=Modern%20notification%20system%20interface%20showing%20reminder%20alerts%20and%20scheduling%2C%20clean%20mobile%20and%20desktop%20notification%20design%20with%20calendar%20integration%2C%20bell%20icons%20and%20time%20indicators%2C%20professional%20reminder%20management%20dashboard%20with%20clean%20white%20background&width=400&height=300&seq=step4-reminder-system&orientation=landscape" class="custom-block-image img-fluid" alt=""><i class="custom-block-icon bi-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12 order-3">
+                <div class="custom-block-info mt-2 mt-lg-0">
+                  <a href="#" class="events-title mb-3"><strong>리마인드</strong></a>
+                  <p class="mb-0">안 읽은 문서가 설정한 리마인드 날짜까지 읽지 않으면 알림으로 알려줍니다.</p>
+                  <div class="d-flex flex-wrap border-top mt-4 pt-3"><div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">미리보기</a></div></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- START -->
+      <section class="contact-section section-padding" id="section_5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-7 col-12">
+              <h2 class="mb-4 pb-2 text-center">시작하기</h2>
+
+              <!-- 요청 이미지(업로드 카드 스타일) -->
+              <div class="preview-image-wrap mb-4">
+                <img src="https://i.ibb.co/rf5XSnBQ/2025-11-02-225546.jpg" alt="ReadLater+ preview">
+                <i class="custom-block-icon bi-link"></i>
+              </div>
+
+              <div class="custom-form contact-form">
+                <p class="mb-4 text-center">아래 버튼으로 실제 동작 모습을 확인하세요.</p>
+                <a href="app.html" class="btn custom-btn w-100">Linder 시작하기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-12 me-auto mb-5 mb-lg-0">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+              <span class="brand-mark"><i class="bi-file-earmark-text"></i></span>
+              <span class="navbar-brand-text">
+                Linder
+                <small>ReadLater+</small>
+              </span>
+            </a>
+          </div>
+
+          <div class="col-lg-3 col-12">
+            <h5 class="site-footer-title mb-4">Join Us</h5>
+            <p class="d-flex border-bottom pb-3 mb-3 me-lg-3">
+              <span>Mon-Fri</span>
+              6:00 AM - 6:00 PM
+            </p>
+            <p class="d-flex me-lg-3">
+              <span>Sat-Sun</span>
+              6:30 AM - 8:30 PM
+            </p>
+            <br>
+            <p class="copyright-text">Copyright © Linder</p>
+          </div>
+
+          <div class="col-lg-2 col-12 ms-auto">
+            <ul class="social-icon mt-lg-5 mt-3 mb-4">
+              <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
+              <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
+              <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#81B29A" fill-opacity="1"
+          d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+        </path>
+      </svg>
+    </footer>
+
+    <!-- JS -->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/dinoqqq/simple-popup@master/dist/jquery.simple-popup.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/dinoqqq/simple-popup@master/dist/jquery.simple-popup.min.css" rel="stylesheet" type="text/css" />
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/click-scroll.js"></script>
+    <script src="js/animated-headline.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/custom.js"></script>
 
     <script type="application/javascript">
-            var ip = "null";
-            function getIP(json) {
-                console.log(json);
-                try {
-                ip = json.ip;
-                } catch (e) {
-                ip = 'unknown';
-                }
-                return;
+        var ip = "null";
+        function getIP(json) {
+            console.log(json);
+            try {
+            ip = json.ip;
+            } catch (e) {
+            ip = 'unknown';
             }
-            </script>
-            <script type="application/javascript" src="https://jsonip.com?format=jsonp&callback=getIP"></script>
+            return;
+        }
+        </script>
+        <script type="application/javascript" src="https://jsonip.com?format=jsonp&callback=getIP"></script>
 
     <script>
-      // 쿠키에서 값을 가져오는 함수
-      function getCookieValue(name) {
-        const value = "; " + document.cookie;
-        const parts = value.split("; " + name + "=");
-        if (parts.length === 2) {
-          return parts.pop().split(";").shift();
+        // 쿠키에서 값을 가져오는 함수
+        function getCookieValue(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) {
+            return parts.pop().split(";").shift();
+            }
         }
-      }
 
-      // 쿠키에 값을 저장하는 함수
-      function setCookieValue(name, value, days) {
-        let expires = "";
-        if (days) {
-          const date = new Date();
-          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-          expires = "; expires=" + date.toUTCString();
+        // 쿠키에 값을 저장하는 함수
+        function setCookieValue(name, value, days) {
+            let expires = "";
+            if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
-      }
 
-      function getUVfromCookie() {
-        // 6자리 임의의 문자열 생성
-        const hash = Math.random().toString(36).substring(2, 8).toUpperCase();
-        // 쿠키에서 기존 해시 값을 가져옴
-        const existingHash = getCookieValue("user");
-        // 기존 해시 값이 없으면, 새로운 해시 값을 쿠키에 저장
-        if (!existingHash) {
-          setCookieValue("user", hash, 180); // 쿠키 만료일은 6개월 
-          return hash;
-        } else {
-          // 기존 해시 값이 있으면, 기존 값을 반환
-          return existingHash;
+        function getUVfromCookie() {
+            // 6자리 임의의 문자열 생성
+            const hash = Math.random().toString(36).substring(2, 8).toUpperCase();
+            // 쿠키에서 기존 해시 값을 가져옴
+            const existingHash = getCookieValue("user");
+            // 기존 해시 값이 없으면, 새로운 해시 값을 쿠키에 저장
+            if (!existingHash) {
+            setCookieValue("user", hash, 180); // 쿠키 만료일은 6개월 
+            return hash;
+            } else {
+            // 기존 해시 값이 있으면, 기존 값을 반환
+            return existingHash;
+            }
         }
-      }
 
-      // Sam pading value to start with 0. eg: 01, 02, .. 09, 10, ..
-      function padValue(value) {
-        return (value < 10) ? "0" + value : value;
-      }
+        // Sam pading value to start with 0. eg: 01, 02, .. 09, 10, ..
+        function padValue(value) {
+            return (value < 10) ? "0" + value : value;
+        }
 
-      function getTimeStamp() {
-        const date = new Date();
+        function getTimeStamp() {
+            const date = new Date();
 
-        const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
 
-        const formattedDate = `${padValue(year)}-${padValue(month)}-${padValue(day)} ${padValue(hours)}:${padValue(minutes)}:${padValue(seconds)}`;
+            const formattedDate = `${padValue(year)}-${padValue(month)}-${padValue(day)} ${padValue(hours)}:${padValue(minutes)}:${padValue(seconds)}`;
 
-        return formattedDate;
-      }
+            return formattedDate;
+        }
 
-      var queryString = location.search;
-      const urlParams = new URLSearchParams(queryString);
-      const utm = urlParams.get("utm")
+        var queryString = location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const utm = urlParams.get("utm")
 
-      var mobile = 'desktop';
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        // true for mobile device
-        mobile = 'mobile';
-      }
+        var mobile = 'desktop';
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // true for mobile device
+            mobile = 'mobile';
+        }
 
-      /* data를 만들 땐 모든 field가 들어 있어야 함 */
-      var data = JSON.stringify({"id": getUVfromCookie(),
-            "landingUrl":window.location.href,
-            "ip":ip,
-            "referer":document.referrer,
-            "time_stamp":getTimeStamp(),
-            "utm":utm,
-            "device":mobile}
-            );
+        /* data를 만들 땐 모든 field가 들어 있어야 함 */
+        var data = JSON.stringify({"id": getUVfromCookie(),
+                "landingUrl":window.location.href,
+                "ip":ip,
+                "referer":document.referrer,
+                "time_stamp":getTimeStamp(),
+                "utm":utm,
+                "device":mobile}
+                );
 
-      var addrScript = 'https://script.google.com/macros/s/AKfycbwHUTjWnUxfzURmCz7X8n_Ot38FqdtUgDAnjBjak6FNrXhiVxJZmQf8af-aFqfbUbfuDg/exec';
+        var addrScript = 'https://script.google.com/macros/s/AKfycbwHUTjWnUxfzURmCz7X8n_Ot38FqdtUgDAnjBjak6FNrXhiVxJZmQf8af-aFqfbUbfuDg/exec';
 
-      $(document).ready(function () {
-        // $.ajax({
-        //     url: 'https://**srcript url**/exec?action=insert&table=tab_master&data='+data,
-        //     dataType: 'jsonp',
-        //     success: function (data) {
-        //         console.log('성공 - ', JSON.stringify(data));
-        //     },
-        //     error: function (xhr) {
-        //         console.log('실패 - ', JSON.stringify(xhr));
-        //     }
-        // });
+        $(document).ready(function () {
+            // $.ajax({
+            //     url: 'https://**srcript url**/exec?action=insert&table=tab_master&data='+data,
+            //     dataType: 'jsonp',
+            //     success: function (data) {
+            //         console.log('성공 - ', JSON.stringify(data));
+            //     },
+            //     error: function (xhr) {
+            //         console.log('실패 - ', JSON.stringify(xhr));
+            //     }
+            // });
     
         axios.get(addrScript+'?action=insert&table=visitors&data='+encodeURIComponent(data))
             .then(response => {
@@ -188,56 +697,52 @@
               }
               console.log(error.config);
             });
-      });
+        });
 
-            
-      $(document).ready(function () {
-        $(document).on("click", "#submit", function () {
-          const email = $("#submit-email").val();
-          const advice = $("#submit-advice").val();
-        
-          function validateEmail(email) {
-              var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-              return re.test(email);
-          }
-        
-          if (email == '' || !validateEmail(email)) {
-              alert("이메일이 유효하지 않아 알림을 드릴 수가 없습니다. ");
-              return;
-          }
-        
-          var finalData = JSON.stringify({
-              "id": getUVfromCookie(),
-              "email": email,
-              "advice": advice
-          })
+                
+        $(document).ready(function () {
+            $(document).on("click", "#submitrev", function () {
+                const email = $("#submit-email").val();
+                const advice = $("#submit-advice").val();
+                
+                function validateEmail(email) {
+                    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                    return re.test(email);
+                }
+                
+                if (email == '' || !validateEmail(email)) {
+                    alert("이메일이 유효하지 않아 알림을 드릴 수가 없습니다. ");
+                    return;
+                }
+                
+                var finalData = JSON.stringify({
+                    "id": getUVfromCookie(),
+                    "email": email,
+                    "advice": advice
+                })
 
-          $.busyLoadFull("show");
-        
-          axios.get(addrScript+'?action=insert&table=review&data=' + encodeURIComponent(finalData))
-              .then(response => {
-            console.log(response.data.data);
-            // alert(JSON.stringify(response));
-            $('#submit-email').val('');
-            $('#submit-advice').val('');
-            $.busyLoadFull("hide");
-              })
-          
-          $.fn.simplePopup({ type: 'html',  htmlSelector: "#popup" });
+                $.busyLoadFull("show");
+                
+                axios.get(addrScript+'?action=insert&table=review&data=' + encodeURIComponent(finalData))
+                    .then(response => {
+                    console.log(response.data.data);
+                    // alert(JSON.stringify(response));
+                    $('#submit-email').val('');
+                    $('#submit-advice').val('');
+                    $.busyLoadFull("hide");
+                    })
+                
+                $.fn.simplePopup({ type: 'html',  htmlSelector: "#popup" });
+            });
 
-          });
-      });
+            $(document).on('click', '#go-app', function () {
+                var data = JSON.stringify({ id: getUVfromCookie(), time_stamp: getTimeStamp() });
+                axios.get(addrScript + '?action=insert&table=vips&data=' + encodeURIComponent(data));
+            });
+        });
 
-   $(document).on('click', '#popup-close', function () {
-    // simple-popup가 만든 오버레이가 사라지도록 트리거
-    $('.simple-popup-close, .simple-popup-overlay').trigger('click');
-  });
 
-    $(document).on('click', '#go-app', function () {
-    var data = JSON.stringify({ id: getUVfromCookie(), time_stamp: getTimeStamp() });
-    axios.get(addrScript + '?action=insert&table=vips&data=' + encodeURIComponent(data));
-  });
-  
+
 
     </script>
 
