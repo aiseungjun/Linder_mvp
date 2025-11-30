@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ko">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,123 +15,282 @@
   <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet" />
 
   <style>
-    :root{
-      --ink:#3D405B;         /* 홈 상단바 인디고 */
-      --accent:#F2CC8F;      /* 홈의 노란 포인트 */
-      --accent-ink:#111827;
-      --sky:#F7FBFF;         /* 살짝 하늘색 배경 */
-      --card:#ffffff;
-      --border:#ececf3;
+    :root {
+      --ink: #3D405B;
+      /* 홈 상단바 인디고 */
+      --accent: #F2CC8F;
+      /* 홈의 노란 포인트 */
+      --accent-ink: #111827;
+      --sky: #F7FBFF;
+      /* 살짝 하늘색 배경 */
+      --card: #ffffff;
+      --border: #ececf3;
     }
-    body{
-      font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--sky);
-      font-size:1.06rem;
-      color:#0f172a;
+
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--sky);
+      font-size: 1.06rem;
+      color: #0f172a;
     }
 
     /* ===== Top Bar (홈 색상 적용, 설명 제거) ===== */
-    .topbar{
-      position:sticky; top:0; z-index:1030;
-      background:var(--ink);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      box-shadow:0 4px 16px rgba(0,0,0,.08);
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      background: var(--ink);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
     }
-    .topbar .brand-link{ color:#fff; text-decoration:none; }
-    .brand-mark{
-      display:inline-flex;align-items:center;justify-content:center;
-      width:38px;height:38px;border-radius:12px;
-      background:linear-gradient(135deg,#f2f4f8,#e6eefc);
-      border:1px solid rgba(0,0,0,.06); margin-right:.6rem
+
+    .topbar .brand-link {
+      color: #fff;
+      text-decoration: none;
     }
-    .brand-mark i{font-size:1.1rem;color:#2b2f36}
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f2f4f8, #e6eefc);
+      border: 1px solid rgba(0, 0, 0, .06);
+      margin-right: .6rem
+    }
+
+    .brand-mark i {
+      font-size: 1.1rem;
+      color: #2b2f36
+    }
 
     /* 상단 토글 (안읽음/읽음) */
-    .segmented{
-      display:inline-flex; gap:6px; padding:6px; border-radius:999px;
-      background:rgba(255,255,255,.12); backdrop-filter:blur(4px);
-      border:1px solid rgba(255,255,255,.18)
+    .segmented {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, .18)
     }
-    .segmented .btn{
-      border-radius:999px; border:0; padding:.45rem .95rem; font-weight:700;
-      color:rgba(255,255,255,.85); background:transparent
+
+    .segmented .btn {
+      border-radius: 999px;
+      border: 0;
+      padding: .45rem .95rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .85);
+      background: transparent
     }
-    .segmented .btn.active{
-      background:#fff; color:var(--ink);
-      box-shadow:0 2px 4px rgba(0,0,0,.12)
+
+    .segmented .btn.active {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .12)
     }
 
     /* ===== 입력/정렬 섹션 (홈 느낌, 노란 포인트) ===== */
-    .section-controls{background:var(--card); border-bottom:1px solid #e8edf6}
-    .section-padding{padding-top:36px; padding-bottom:36px}
-    .form-control,.form-select{border-radius:14px}
-    .input-group-text{border-radius:14px 0 0 14px}
-
-    .btn-round{border-radius:14px}
-    .btn-primary{
-      --bs-btn-bg:var(--accent);
-      --bs-btn-border-color:var(--accent);
-      --bs-btn-color:var(--accent-ink);
-      --bs-btn-hover-bg:#e9be7e;
-      --bs-btn-hover-border-color:#e9be7e;
-      --bs-btn-hover-color:var(--accent-ink);
+    .section-controls {
+      background: var(--card);
+      border-bottom: 1px solid #e8edf6
     }
-    .btn-outline-primary{
-      --bs-btn-color:var(--accent);
-      --bs-btn-border-color:var(--accent);
-      --bs-btn-hover-bg:var(--accent);
-      --bs-btn-hover-border-color:var(--accent);
-      --bs-btn-hover-color:var(--accent-ink);
-      color:var(--accent);
-      border-color:var(--accent);
+
+    .section-padding {
+      padding-top: 36px;
+      padding-bottom: 36px
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 14px
+    }
+
+    .input-group-text {
+      border-radius: 14px 0 0 14px
+    }
+
+    .btn-round {
+      border-radius: 14px
+    }
+
+    .btn-primary {
+      --bs-btn-bg: var(--accent);
+      --bs-btn-border-color: var(--accent);
+      --bs-btn-color: var(--accent-ink);
+      --bs-btn-hover-bg: #e9be7e;
+      --bs-btn-hover-border-color: #e9be7e;
+      --bs-btn-hover-color: var(--accent-ink);
+    }
+
+    .btn-outline-primary {
+      --bs-btn-color: var(--accent);
+      --bs-btn-border-color: var(--accent);
+      --bs-btn-hover-bg: var(--accent);
+      --bs-btn-hover-border-color: var(--accent);
+      --bs-btn-hover-color: var(--accent-ink);
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
     /* 보기/정렬 토글(본문) */
-    .chips{ display:inline-flex; gap:6px; padding:6px; border-radius:999px;
-            background:#fff; border:1px solid var(--border) }
-    .chips .btn{
-      border-radius:999px; border:0; padding:.42rem .9rem; font-weight:600;
-      color:#334155; background:transparent
+    .chips {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border)
     }
-    .chips .btn.active{
-      background:var(--accent); color:var(--accent-ink);
-      box-shadow:0 1px 3px rgba(0,0,0,.12)
+
+    .chips .btn {
+      border-radius: 999px;
+      border: 0;
+      padding: .42rem .9rem;
+      font-weight: 600;
+      color: #334155;
+      background: transparent
+    }
+
+    .chips .btn.active {
+      background: var(--accent);
+      color: var(--accent-ink);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .12)
     }
 
     /* ===== 리스트 그리드 ===== */
-    #listRoot{display:grid; gap:1.25rem}
-    #listRoot.cols-1{grid-template-columns:1fr}
-    #listRoot.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    #listRoot.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    @media (max-width: 991.98px){ #listRoot.cols-3{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width: 767.98px){ #listRoot.cols-2,#listRoot.cols-3{grid-template-columns:1fr} }
+    #listRoot {
+      display: grid;
+      gap: 1.25rem
+    }
+
+    #listRoot.cols-1 {
+      grid-template-columns: 1fr
+    }
+
+    #listRoot.cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    #listRoot.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+
+    @media (max-width: 991.98px) {
+      #listRoot.cols-3 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media (max-width: 767.98px) {
+
+      #listRoot.cols-2,
+      #listRoot.cols-3 {
+        grid-template-columns: 1fr
+      }
+    }
 
     /* 카드/태그 */
-    .doc-card{background:#fff;border-radius:20px;border:1px solid var(--border);
-              transition:transform .18s ease, box-shadow .2s ease}
-    .doc-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.08)}
-    .tag{font-size:.75rem;padding:.35rem .6rem;border-radius:999px;border:1px solid;white-space:nowrap}
-    .t-cook{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
-    .t-dl{background:#f3e8ff;color:#6b21a8;border-color:#e9d5ff}
-    .t-sci{background:#eff6ff;color:#1d4ed8;border-color:#dbeafe}
-    .t-dev{background:#ecfdf5;color:#047857;border-color:#d1fae5}
-    .t-health{background:#fdf2f8;color:#9d174d;border-color:#fbcfe8}
-    .t-etc{background:#f3f4f6;color:#374151;border-color:#e5e7eb}
+    .doc-card {
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      transition: transform .18s ease, box-shadow .2s ease
+    }
+
+    .doc-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, .08)
+    }
+
+    .tag {
+      font-size: .75rem;
+      padding: .35rem .6rem;
+      border-radius: 999px;
+      border: 1px solid;
+      white-space: nowrap
+    }
+
+    .t-cook {
+      background: #fff7ed;
+      color: #9a3412;
+      border-color: #fed7aa
+    }
+
+    .t-dl {
+      background: #f3e8ff;
+      color: #6b21a8;
+      border-color: #e9d5ff
+    }
+
+    .t-sci {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #dbeafe
+    }
+
+    .t-dev {
+      background: #ecfdf5;
+      color: #047857;
+      border-color: #d1fae5
+    }
+
+    .t-health {
+      background: #fdf2f8;
+      color: #9d174d;
+      border-color: #fbcfe8
+    }
+
+    .t-etc {
+      background: #f3f4f6;
+      color: #374151;
+      border-color: #e5e7eb
+    }
 
     /* 오른쪽 3버튼 동일폭 */
-    .action-btn{min-width:140px;white-space:nowrap}
-    @media (max-width:991.98px){ .action-btn{width:100%} }
+    .action-btn {
+      min-width: 140px;
+      white-space: nowrap
+    }
+
+    @media (max-width:991.98px) {
+      .action-btn {
+        width: 100%
+      }
+    }
 
     /* 빈 상태 */
-    .empty-illustr{width:96px;height:96px;border-radius:999px;background:#f3f4f6;
-      display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;color:#9ca3af;font-size:34px}
+    .empty-illustr {
+      width: 96px;
+      height: 96px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem auto;
+      color: #9ca3af;
+      font-size: 34px
+    }
 
     /* 문서 섹션 내부 브랜드 블록 */
-    .brand-footer{background:#fff;border:1px solid var(--border);border-radius:16px}
+    .brand-footer {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px
+    }
+
+    #tagFilterButtons .btn.active {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
   </style>
 </head>
-<body>
 
+<body>
   <!-- ===== Top Bar (홈 색상/로고만, 설명 제거) ===== -->
   <header class="topbar">
     <div class="container py-3">
@@ -161,8 +321,14 @@
 
         <div class="col-6 col-lg-2">
           <select id="topicSelect" class="form-select">
-            <option>자동 감지</option><option>요리</option><option>딥러닝</option>
-            <option>과학</option><option>프로그래밍</option><option>헬스케어</option><option>기타</option>
+            <option>자동 감지</option>
+            <option>교육</option>
+            <option>게임</option>
+            <option>패션</option>
+            <option>뷰티</option>
+            <option>스포츠</option>
+            <option>경제</option>
+            <option>IT</option>
           </select>
         </div>
 
@@ -179,30 +345,40 @@
         </div>
 
         <!-- 정렬 · 보기 토글 -->
-        <div class="col-12 d-flex flex-wrap gap-3 mt-1">
-          <div class="d-flex align-items-center gap-2">
-            <span class="text-muted small">정렬</span>
-            <div class="chips" id="sortToggle" aria-label="정렬">
-              <button class="btn active" data-sort="date_desc">날짜(최신)</button>
-              <button class="btn" data-sort="date_asc">날짜(오래된)</button>
-              <button class="btn" data-sort="tag">태그</button>
+        <div class="col-12 mt-1">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2">
+              <span class="text-muted small">정렬</span>
+              <div class="chips" id="sortToggle" aria-label="정렬">
+                <button class="btn active" data-sort="date_desc">날짜(최신)</button>
+                <button class="btn" data-sort="date_asc">날짜(오래된)</button>
+                <button class="btn" data-sort="tag">태그</button>
+              </div>
             </div>
-          </div>
 
-          <div class="d-flex align-items-center gap-2">
-            <span class="text-muted small">보기</span>
-            <div class="chips" id="viewToggle" aria-label="보기열수">
-              <button class="btn active" data-cols="1">1열</button>
-              <button class="btn" data-cols="2">2열</button>
-              <button class="btn" data-cols="3">3열</button>
+            <div class="d-flex align-items-center gap-2">
+              <span class="text-muted small">보기</span>
+              <div class="chips" id="viewToggle" aria-label="보기열수">
+                <button class="btn active" data-cols="1">1열</button>
+                <button class="btn" data-cols="2">2열</button>
+                <button class="btn" data-cols="3">3열</button>
+              </div>
             </div>
           </div>
         </div>
+        <!-- 정렬 토글 클릭 시 tagMode 처리 + 필터 렌더링 -->
+        <div class="col-12 mt-2" id="tagFilterRow" style="display:none;">
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <span class="text-muted small">태그 선택</span>
+            <div id="tagFilterButtons" class="d-flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+
 
         <div class="col-12">
           <small class="text-muted">
-            ※ URL을 입력하면 실제 페이지의 &lt;title&gt;을 가져와 제목으로 저장합니다.
-            리마인드 날짜는 기본으로 <strong>14일 뒤</strong>가 선택됩니다. 달력에서 변경할 수 있어요.
+            ※ 현재 쿠키로 로그인 하셨습니다! URL을 입력하면 실제 페이지의 정보를 바탕으로 AI가 제목과 요약을 저장합니다.
+            링크를 하나라도 입력하시면 데모 링크는 사라지며, 리마인드 날짜는 기본으로 <strong>14일 뒤</strong>가 선택됩니다. 달력에서 변경할 수 있어요.
           </small>
         </div>
       </div>
@@ -235,188 +411,445 @@
   </section>
 
 
-    <!-- 홈과 동일한 파도 배경 색상 -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path fill="#81B29A" fill-opacity="1"
-        d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
-      </path>
-    </svg>
+  <!-- 홈과 동일한 파도 배경 색상 -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#81B29A" fill-opacity="1"
+      d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+    </path>
+  </svg>
   </footer>
 
-  <!-- ===== JS (기능 그대로) ===== -->
+  <!-- ===== JS (기능 그대로 + 백엔드 연동) ===== -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+
   <script>
-    /* ---------- Demo 데이터 (태그 최대 3개) ---------- */
-    let articles = [
-      {id:"1", url:"https://medium.com/react-18-best-practices",
-        title:"React 개발자를 위한 최신 베스트 프랙티스 가이드",
-        summary:"React 18의 새로운 기능과 성능 최적화/상태관리/컴포넌트 설계 팁.",
-        tags:["프로그래밍"], status:"1", added_at:"2024-01-15", remind_at:"2024-01-29"},
-      {id:"2", url:"https://blog.example.com/ml-from-zero-to-one",
-        title:"머신러닝 기초부터 실전까지: 완벽 가이드",
-        summary:"데이터 전처리, 모델 선택, 평가 방법까지 단계별 실습.",
-        tags:["딥러닝","과학"], status:"1", added_at:"2024-01-14", remind_at:"2024-01-28"},
-      {id:"3", url:"https://science-daily.com/quantum-computing",
-        title:"양자 컴퓨팅의 새로운 돌파구: 실용화 단계로 진입",
-        summary:"향후 10년간 기술의 진전과 산업 적용 전망.",
-        tags:["과학"], status:"1", added_at:"2024-01-13", remind_at:"2024-01-27"},
-      {id:"4", url:"https://cooking.com/healthy-mealprep",
-        title:"바쁜 직장인을 위한 건강한 밀프렙 레시피 10가지",
-        summary:"30분 이내 레시피와 보관/재가열 팁 정리.",
-        tags:["요리"], status:"0", added_at:"2024-01-12", remind_at:"2024-01-26"},
-      {id:"5", url:"https://arxiv.org/abs/2410.12345",
-        title:"Self-Supervised Denoising for Low-dose CT",
-        summary:"저선량 CT 노이즈 억제를 위한 자가지도 학습 프레임워크.",
-        tags:["헬스케어","딥러닝"], status:"1", added_at:"2024-01-10", remind_at:"2024-01-24"},
-      {id:"6", url:"https://dev.to/post/ts-best-patterns",
-        title:"TypeScript 실전 패턴 모음",
-        summary:"유틸리티 타입, 제네릭, 안전한 API 모델링 등.",
-        tags:["프로그래밍"], status:"0", added_at:"2024-01-09", remind_at:"2024-01-23"},
-      {id:"7", url:"https://khanacademy.org/ai-basics",
-        title:"AI 기초 수업 로드맵",
-        summary:"확률·미분·선형대수 핵심 개념 로드맵.",
-        tags:["과학","딥러닝"], status:"1", added_at:"2024-01-08", remind_at:"2024-01-22"},
-      {id:"8", url:"https://towardsdatascience.com/pytorch-tricks",
-        title:"PyTorch 훈련 안정화 트릭 15가지",
-        summary:"AMP, Grad Clip, Seed 관리 등.",
-        tags:["딥러닝","프로그래밍"], status:"1", added_at:"2024-01-07", remind_at:"2024-01-21"},
-      {id:"9", url:"https://vercel.com/blog/web-performance-2025",
-        title:"2025 웹 성능 체크리스트",
-        summary:"LCP·INP·CLS 최적화와 Edge 캐싱 전략.",
-        tags:["프로그래밍"], status:"1", added_at:"2024-01-06", remind_at:"2024-01-20"},
-      {id:"10", url:"https://nejm.org/doi/abc",
-        title:"의료 AI 규제 업데이트 브리핑",
-        summary:"임상 안전성 가이드와 리스크 관리 이슈.",
-        tags:["헬스케어"], status:"0", added_at:"2024-01-05", remind_at:"2024-01-19"},
-    ];
+    /* =========================
+       공통 유틸 (쿠키, 날짜)
+    ========================== */
 
-    /* ---------- 상태 & 유틸 ---------- */
-    let activeTab = "UNREAD";           // 'UNREAD' | 'read'
-    let sortMode  = "date_desc";        // 'date_desc' | 'date_asc' | 'tag'
-    let layoutCols = 1;                 // 1 | 2 | 3
-
-    const $ = (s,r=document)=>r.querySelector(s);
-    const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
-
-    const host = (u)=>{ try{ return new URL(u).hostname }catch{ return "unknown" } };
-    const tagClass = (t)=>{
-      if(t==="요리") return "t-cook";
-      if(t==="딥러닝") return "t-dl";
-      if(t==="과학") return "t-sci";
-      if(t==="프로그래밍") return "t-dev";
-      if(t==="헬스케어") return "t-health";
-      return "t-etc";
-    };
-    const uniq = (arr)=>[...new Set(arr)].slice(0,3);
-
-    // 기본 달력 = 오늘 + 14일
-    (function initRemindPicker(){
-      const p = $("#remindPicker");
-      const now = new Date();
-      const d = new Date(now); d.setDate(now.getDate()+14);
-      p.value = d.toISOString().slice(0,10);
-      p.min   = now.toISOString().slice(0,10);
-    })();
-
-    async function fetchTitle(url){
-      try{
-        const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
-        const data = await res.json();
-        const doc = new DOMParser().parseFromString(data.contents,'text/html');
-        return doc.querySelector('title')?.textContent?.trim() || `새로 추가된 글 (${host(url)})`;
-      }catch{
-        return `새로 추가된 글 (${host(url)})`;
+    function getCookieValue(name) {
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      if (parts.length === 2) {
+        return parts.pop().split(";").shift();
       }
     }
-    function inferTags(url, sel){
-      if(sel && sel!=="자동 감지") return [sel];
-      const u = url.toLowerCase();
-      const guess = [];
-      if(u.includes("arxiv") || u.includes("pytorch") || u.includes("datascience")) guess.push("딥러닝");
-      if(u.includes("dev.") || u.includes("vercel") || u.includes("react")) guess.push("프로그래밍");
-      if(u.includes("nejm") || u.includes("ct") || u.includes("health")) guess.push("헬스케어");
-      if(u.includes("cooking") || u.includes("recipe")) guess.push("요리");
-      if(u.includes("science")) guess.push("과학");
-      if(guess.length===0) guess.push("기타");
-      return uniq(guess);
+
+    function setCookieValue(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
 
-    /* ---------- 동작 ---------- */
-    async function addArticle(){
+    function getUVfromCookie() {
+      const existingHash = getCookieValue("user");
+      if (existingHash) return existingHash;
+      const hash = Math.random().toString(36).substring(2, 8).toUpperCase();
+      setCookieValue("user", hash, 180);
+      return hash;
+    }
+
+    function todayISO() {
+      const d = new Date();
+      return d.toISOString().slice(0, 10);
+    }
+
+    function addDaysISO(days) {
+      const d = new Date();
+      d.setDate(d.getDate() + days);
+      return d.toISOString().slice(0, 10);
+    }
+
+    /* =========================
+       상태 & 유틸
+    ========================== */
+
+    let articles = [];                 // 서버에서 받아온 + 새로 추가한 데이터
+    let activeTab = "UNREAD";          // 'UNREAD' | 'read'
+    let sortMode = "date_desc";        // 'date_desc' | 'date_asc' | 'tag'
+    let layoutCols = 1;                // 1 | 2 | 3
+    let tagFilterActive = false;
+    let activeTagsForFilter = new Set();  // 선택된 태그들
+
+
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+    const host = (u) => { try { return new URL(u).hostname } catch { return "unknown" } };
+
+    const ALL_TAGS = [
+      "뉴스", "교육", "코미디", "일상", "게임", "음악", "영화", "스포츠", "패션", "뷰티", "기술", "음식", "여행", "건강", "과학", "역사",
+      "정치", "경제", "재테크", "자기계발", "예술", "반려동물", "환경", "리뷰", "공예", "취미", "오디오", "팟캐스트", "만화", "아동", "종교",
+      "문화", "쇼핑", "부동산", "법률", "의학", "IT", "문학", "시사", "조리", "힐링", "ASMR"
+    ];
+
+    // 비슷한 태그끼리 3~4개 정도 묶어서 같은 색을 쓰도록 그룹화
+    const cookTags = ["음식", "조리", "여행", "쇼핑", "리뷰", "힐링", "ASMR"];               // t-cook (따뜻한 오렌지톤)
+    const dlTags = ["기술", "IT", "경제", "재테크", "부동산", "법률", "뉴스", "시사"];        // t-dl (기술·디지털·경제)
+    const sciTags = ["과학", "교육", "역사", "자기계발", "정치", "문학"];                     // t-sci (학문·지식)
+    const devTags = ["게임", "음악", "영화", "코미디", "예술", "공예", "취미",
+      "만화", "오디오", "팟캐스트", "패션", "뷰티", "문화"];                  // t-dev (엔터·취미·라이프스타일)
+    const healthTags = ["건강", "환경", "의학", "스포츠", "반려동물", "아동"];                 // t-health (건강·라이프케어)
+    const etcTags = ["일상", "종교"];                                                         // t-etc (그 외)
+
+    const TAG_CLASS_MAP = {};
+
+    cookTags.forEach(t => TAG_CLASS_MAP[t] = "t-cook");
+    dlTags.forEach(t => TAG_CLASS_MAP[t] = "t-dl");
+    sciTags.forEach(t => TAG_CLASS_MAP[t] = "t-sci");
+    devTags.forEach(t => TAG_CLASS_MAP[t] = "t-dev");
+    healthTags.forEach(t => TAG_CLASS_MAP[t] = "t-health");
+    etcTags.forEach(t => TAG_CLASS_MAP[t] = "t-etc");
+
+    const tagClass = (t) => {
+      // ALL_TAGS 안에 있는 태그는 전부 여기서 색상이 매핑됨
+      return TAG_CLASS_MAP[t] || "t-etc";
+    };
+
+
+
+    const uniq = (arr) => [...new Set(arr)].slice(0, 3);
+
+    // 리마인드 기본값 = 오늘 + 14일
+    (function initRemindPicker() {
+      const p = $("#remindPicker");
+      const now = new Date();
+      const d = new Date(now); d.setDate(now.getDate() + 14);
+      p.value = d.toISOString().slice(0, 10);
+      p.min = now.toISOString().slice(0, 10);
+    })();
+
+    // Apps Script 엔드포인트 (index.html에서 쓰던 것과 동일하게 맞추기)
+    const addrScript = 'https://script.google.com/macros/s/AKfycbwHUTjWnUxfzURmCz7X8n_Ot38FqdtUgDAnjBjak6FNrXhiVxJZmQf8af-aFqfbUbfuDg/exec';
+
+
+    /* =========================
+       서버 통신: webs READ
+       - user_id == 나 OR is_demo == 1
+       - 서버에서 필터링해서 내려옴
+    ========================== */
+
+    async function loadArticlesFromServer() {
+      const userId = getUVfromCookie();
+
+      try {
+        const res = await axios.get(
+          addrScript + '?action=read&table=webs&user_id=' + encodeURIComponent(userId)
+        );
+        const list = res.data && res.data.data ? res.data.data : [];
+
+        // webs 시트 → articles 형식으로 맞추기
+        articles = list
+          .filter(row => row.status !== "2")   // 소프트 삭제된 것은 제외
+          .map(row => ({
+            id: String(row.id),
+            user_id: row.user_id,
+            is_demo: Number(row.is_demo) || 0,
+            url: row.url,
+            title: row.title,
+            summary: row.summary,
+            tags: row.tags ? String(row.tags).split(",").map(s => s.trim()).filter(Boolean) : [],
+            status: String(row.status),
+            added_at: row.added_at ? String(row.added_at).slice(0, 10) : todayISO(),
+            remind_at: row.remind_at ? String(row.remind_at).slice(0, 10) : ""
+          }));
+
+        render();
+      } catch (err) {
+        console.error('웹 목록 로드 실패', err);
+        // 실패해도 데모 없이 빈 상태로라도 동작하도록
+        articles = [];
+        render();
+      }
+    }
+
+    /* =========================
+       서버 통신: webs INSERT + Gemini
+       - 프론트에서 url, user_topic, remind_at, user_id 보내기
+       - 서버가 title/summary/tags 채워서 webs에 저장 후 JSON 반환
+    ========================== */
+
+    async function addArticle() {
       const url = $("#urlInput").value.trim();
-      const sel = $("#topicSelect").value;
-      const remindAt = $("#remindPicker").value; // 달력 값 직접 사용
-      if(!url) return;
+      const sel = $("#topicSelect").value;            // "자동 감지" / 교육 / 게임 / 패션 / 뷰티 / 스포츠 / 경제 / IT
+      const remindAt = $("#remindPicker").value;
+      const userId = getUVfromCookie();
 
-      $("#addBtn").disabled = true; $("#addBtn").innerText = "추가 중...";
+      if (!url) return;
 
-      const title = await fetchTitle(url);
-      const now = new Date(); const added = now.toISOString().slice(0,10);
+      const btn = $("#addBtn");
+      btn.disabled = true;
+      btn.innerText = "추가 중...";
 
-      articles.unshift({
-        id:String(Date.now()),
-        url, title,
-        summary:"이 글은 곧 AI에 의해 요약될 예정입니다. (데모)",
-        tags: inferTags(url, sel),
-        status:"1",
-        added_at:added,
-        remind_at:remindAt
-      });
+      try {
+        const payload = {
+          user_id: userId,
+          url: url,
+          user_topic: sel,           // 사용자가 선택한 카테고리 (자동 감지 포함)
+          remind_at: remindAt
+        };
 
-      $("#urlInput").value = "";
-      render();
-      $("#addBtn").disabled = false; $("#addBtn").innerText = "추가";
+        const res = await axios.get(
+          addrScript + '?action=insert_web'
+          + '&table=webs'
+          + '&data=' + encodeURIComponent(JSON.stringify(payload))
+        );
+
+        const record = res.data && res.data.data ? res.data.data : null;
+        if (!record) throw new Error("서버에서 data가 오지 않았습니다.");
+
+        const a = {
+          id: String(record.id),
+          user_id: record.user_id,
+          is_demo: Number(record.is_demo) || 0,
+          url: record.url,
+          title: record.title,
+          summary: record.summary,
+          tags: record.tags ? String(record.tags).split(",").map(s => s.trim()).filter(Boolean) : [],
+          status: String(record.status),
+          added_at: record.added_at || todayISO(),
+          remind_at: record.remind_at || ""
+        };
+
+        articles.unshift(a);
+        $("#urlInput").value = "";
+        render();
+      } catch (err) {
+        console.error("링크 추가 중 오류", err);
+        alert("링크 추가 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "추가";
+      }
     }
 
-    function markAsRead(id){
-      articles = articles.map(a => a.id===id ? {...a, status:"0"} : a);
-      render();
+    /* =========================
+       서버 통신: webs UPDATE (status만)
+    ========================== */
+
+    async function updateArticleStatusOnServer(id, newStatus) {
+      try {
+        const data = { status: newStatus };
+
+        await axios.get(
+          addrScript
+          + '?action=update'
+          + '&table=webs'
+          + '&id=' + encodeURIComponent(id)
+          + '&data=' + encodeURIComponent(JSON.stringify(data))
+        );
+      } catch (err) {
+        console.error("상태 업데이트 실패 (id=" + id + ")", err);
+      }
     }
-    function softDelete(id){
-      // 상태 2 = 삭제됨(소프트), 목록에서 숨김
-      articles = articles.map(a => a.id===id ? {...a, status:"2"} : a);
+
+
+    /* =========================
+       동작: 읽음 / 삭제 / 복사
+    ========================== */
+
+    function markAsRead(id) {
+      articles = articles.map(a => a.id === id ? { ...a, status: "0" } : a);
       render();
+
+      const a = articles.find(x => x.id === id);
+      if (!a) return;
+      if (Number(a.is_demo) === 1) {
+        // demo면 서버에 반영 안 함
+        return;
+      }
+      updateArticleStatusOnServer(id, "0");
     }
-    async function copyUrl(url, btn){
-      try{
+
+    function softDelete(id) {
+      articles = articles.map(a => a.id === id ? { ...a, status: "2" } : a);
+      render();
+
+      const a = articles.find(x => x.id === id);
+      if (!a) return;
+      if (Number(a.is_demo) === 1) {
+        return;
+      }
+      updateArticleStatusOnServer(id, "2");
+    }
+
+
+    async function copyUrl(url, btn) {
+      try {
         await navigator.clipboard.writeText(url);
         const prev = btn.innerHTML;
         btn.innerHTML = '<i class="bi-check-lg me-1"></i>복사됨';
-        setTimeout(()=>btn.innerHTML = prev, 900);
-      }catch{}
+        setTimeout(() => btn.innerHTML = prev, 900);
+      } catch {
+        // quietly ignore
+      }
     }
 
-    /* ---------- 정렬 ---------- */
-    function sortArticles(list){
-      if(sortMode==="date_desc"){
-        list.sort((a,b)=> (b.added_at > a.added_at ? 1 : -1));
-      }else if(sortMode==="date_asc"){
-        list.sort((a,b)=> (a.added_at > b.added_at ? 1 : -1));
-      }else if(sortMode==="tag"){
-        list.sort((a,b)=> ( (a.tags?.[0]||"") > (b.tags?.[0]||"") ? 1 : -1 ));
+    /* =========================
+       정렬
+    ========================== */
+
+    function sortArticles(list) {
+      // 숫자로 비교할 수 있게 id를 Number로 캐스팅
+      const toNum = (x) => {
+        const n = Number(x);
+        return isNaN(n) ? 0 : n;
+      };
+
+      if (sortMode === "date_desc") {
+        list.sort((a, b) => {
+          if (a.added_at === b.added_at) {
+            // 같은 날짜면 id가 큰 순 (내림차순)
+            return toNum(b.id) - toNum(a.id);
+          }
+          // 날짜 최신순: 큰 날짜가 먼저
+          return a.added_at < b.added_at ? 1 : -1;
+        });
+
+      } else if (sortMode === "date_asc") {
+        list.sort((a, b) => {
+          if (a.added_at === b.added_at) {
+            // 같은 날짜면 id가 작은 순
+            return toNum(a.id) - toNum(b.id);
+          }
+          // 날짜 오래된 순: 작은 날짜가 먼저
+          return a.added_at > b.added_at ? 1 : -1;
+        });
+
+      } else if (sortMode === "tag") {
+        list.sort((a, b) => {
+          const ta = (a.tags && a.tags[0]) || "";
+          const tb = (b.tags && b.tags[0]) || "";
+          if (ta === tb) {
+            // 태그도 같으면 id 순으로
+            return toNum(a.id) - toNum(b.id);
+          }
+          return ta > tb ? 1 : -1;
+        });
       }
+
       return list;
     }
 
-    /* ---------- 렌더 ---------- */
-    function render(){
+    $$("#sortToggle .btn").forEach(btn => btn.addEventListener("click", () => {
+      sortMode = btn.dataset.sort;
+
+      // sort 버튼 active 처리
+      $$("#sortToggle .btn").forEach(b => b.classList.toggle("active", b === btn));
+
+      if (sortMode === "tag") {
+        tagFilterActive = true;
+        buildTagFilterFromArticles();
+      } else {
+        tagFilterActive = false;
+        $("#tagFilterRow").style.display = "none";
+      }
+
+      render();
+    }));
+
+    // 현재 articles에서 태그 모음 → 버튼 생성
+    function buildTagFilterFromArticles() {
+      // 현재 articles에서 태그 모두 수집
+      const tagSet = new Set();
+      articles.forEach(a => {
+        (a.tags || []).forEach(t => tagSet.add(t));
+      });
+
+      const tags = Array.from(tagSet);
+      const row = $("#tagFilterRow");
+      const container = $("#tagFilterButtons");
+      container.innerHTML = "";
+
+      if (tags.length === 0) {
+        row.style.display = "none";
+        activeTagsForFilter = new Set();
+        return;
+      }
+
+      // 기본: 모든 태그 선택 상태
+      activeTagsForFilter = new Set(tags);
+
+      tags.forEach(t => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btn btn-sm btn-outline-secondary";
+        btn.dataset.tag = t;
+        btn.textContent = t;
+        btn.classList.add("active"); // UI상 선택됨 표시
+
+        btn.addEventListener("click", () => {
+          if (activeTagsForFilter.has(t)) {
+            activeTagsForFilter.delete(t);
+            btn.classList.remove("active");
+          } else {
+            activeTagsForFilter.add(t);
+            btn.classList.add("active");
+          }
+          render();
+        });
+
+        container.appendChild(btn);
+      });
+
+      row.style.display = "";
+    }
+
+
+
+
+    /* =========================
+       렌더
+    ========================== */
+
+    function render() {
       const root = $("#listRoot");
-      root.classList.remove("cols-1","cols-2","cols-3");
+      root.classList.remove("cols-1", "cols-2", "cols-3");
       root.classList.add(`cols-${layoutCols}`);
       root.innerHTML = "";
 
-      const filtered = sortArticles(
-        articles.filter(a => (a.status==="1" && activeTab==="UNREAD") || (a.status==="0" && activeTab==="read"))
-      );
+      // 🔹 실제 유저 링크가 하나라도 있는지 확인
+      const hasRealArticle = articles.some(a => Number(a.is_demo) === 0);
 
-      $("#emptyState").classList.toggle("d-none", filtered.length!==0);
-      $("#emptyTitle").innerText = activeTab==="UNREAD" ? "아직 저장한 글이 없어요" : "읽은 글이 없어요";
+      // 🔹 탭 필터가 선택되었다면
+      let list = articles.filter(a => {
+        if (hasRealArticle && Number(a.is_demo) === 1) return false;
 
-      filtered.forEach(a=>{
+        const tabMatch =
+          (a.status === "1" && activeTab === "UNREAD") ||
+          (a.status === "0" && activeTab === "read");
+
+        if (!tabMatch) return false;
+
+        // 🔹 태그 필터가 켜져 있고, activeTagsForFilter가 비어 있지 않다면
+        if (tagFilterActive && activeTagsForFilter.size > 0) {
+          const tags = a.tags || [];
+          // 문서의 태그들 중 하나라도 activeTags에 있으면 통과
+          const hasActive = tags.some(t => activeTagsForFilter.has(t));
+          if (!hasActive) return false;
+        }
+
+        return true;
+      });
+
+      const filtered = sortArticles(list);
+
+      $("#emptyState").classList.toggle("d-none", filtered.length !== 0);
+      $("#emptyTitle").innerText = activeTab === "UNREAD" ? "아직 저장한 글이 없어요" : "읽은 글이 없어요";
+
+      filtered.forEach(a => {
         const card = document.createElement("div");
         card.className = "doc-card p-4";
 
-        const tagsHtml = (a.tags||[]).slice(0,3).map(t=>`<span class="tag ${tagClass(t)}">${t}</span>`).join(" ");
+        const tagsHtml = (a.tags || []).slice(0, 3).map(t =>
+          `<span class="tag ${tagClass(t)}">${t}</span>`
+        ).join(" ");
 
         card.innerHTML = `
           <div class="d-flex flex-column flex-xl-row gap-3">
@@ -441,11 +874,10 @@
                 <i class="bi-box-arrow-up-right me-1"></i>열기
               </a>
 
-              ${
-                a.status==="1"
-                ? `<button class="btn btn-primary btn-round action-btn" data-act="read"><i class="bi-check2 me-1"></i>읽음으로 표시</button>`
-                : `<button class="btn btn-danger btn-round action-btn" data-act="delete"><i class="bi-trash me-1"></i>문서 삭제</button>`
-              }
+              ${a.status === "1"
+            ? `<button class="btn btn-primary btn-round action-btn" data-act="read"><i class="bi-check2 me-1"></i>읽음으로 표시</button>`
+            : `<button class="btn btn-danger btn-round action-btn" data-act="delete"><i class="bi-trash me-1"></i>문서 삭제</button>`
+          }
 
               <button class="btn btn-outline-secondary btn-round action-btn" data-act="copy"><i class="bi-clipboard me-1"></i>복사</button>
             </div>
@@ -453,36 +885,42 @@
         `;
 
         const secondBtn = card.querySelector('[data-act="read"],[data-act="delete"]');
-        if(secondBtn){
-          if(a.status==="1") secondBtn.addEventListener("click", ()=>markAsRead(a.id));
-          else secondBtn.addEventListener("click", ()=>softDelete(a.id));
+        if (secondBtn) {
+          if (a.status === "1") secondBtn.addEventListener("click", () => markAsRead(a.id));
+          else secondBtn.addEventListener("click", () => softDelete(a.id));
         }
         const copyBtn = card.querySelector('[data-act="copy"]');
-        copyBtn.addEventListener("click", (e)=>copyUrl(a.url, e.currentTarget));
+        copyBtn.addEventListener("click", (e) => copyUrl(a.url, e.currentTarget));
 
         root.appendChild(card);
       });
 
-      // 세그먼트 활성화 상태 동기화
-      $$("#tabToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.tab===activeTab));
-      $$("#sortToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.sort===sortMode));
-      $$("#viewToggle .btn").forEach(b => b.classList.toggle("active", Number(b.dataset.cols)===layoutCols));
+      // 토글 UI sync
+      $$("#tabToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.tab === activeTab));
+      $$("#sortToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.sort === sortMode));
+      $$("#viewToggle .btn").forEach(b => b.classList.toggle("active", Number(b.dataset.cols) === layoutCols));
     }
 
-    /* ---------- 이벤트 ---------- */
+    /* =========================
+       이벤트 바인딩
+    ========================== */
+
     $("#addBtn").addEventListener("click", addArticle);
 
-    $$("#tabToggle .btn").forEach(btn => btn.addEventListener("click", ()=>{
+    $$("#tabToggle .btn").forEach(btn => btn.addEventListener("click", () => {
       activeTab = btn.dataset.tab; render();
     }));
-    $$("#sortToggle .btn").forEach(btn => btn.addEventListener("click", ()=>{
-      sortMode = btn.dataset.sort; render();
-    }));
-    $$("#viewToggle .btn").forEach(btn => btn.addEventListener("click", ()=>{
+    // $$("#sortToggle .btn").forEach(btn => btn.addEventListener("click", () => {
+    //   sortMode = btn.dataset.sort; render();
+    // }));
+    $$("#viewToggle .btn").forEach(btn => btn.addEventListener("click", () => {
       layoutCols = Number(btn.dataset.cols); render();
     }));
 
-    render();
+    // 초기 로드
+    loadArticlesFromServer();
+
   </script>
 </body>
+
 </html>

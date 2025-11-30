@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linder — ReadLater+ App</title>
+
+  <!-- Base styles (홈과 동일 폰트/템플릿) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap-icons.css" rel="stylesheet" />
+  <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #3D405B;
+      /* 홈 상단바 인디고 */
+      --accent: #F2CC8F;
+      /* 홈의 노란 포인트 */
+      --accent-ink: #111827;
+      --sky: #F7FBFF;
+      /* 살짝 하늘색 배경 */
+      --card: #ffffff;
+      --border: #ececf3;
+    }
+
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--sky);
+      font-size: 1.06rem;
+      color: #0f172a;
+    }
+
+    /* ===== Top Bar (홈 색상 적용, 설명 제거) ===== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      background: var(--ink);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+    }
+
+    .topbar .brand-link {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f2f4f8, #e6eefc);
+      border: 1px solid rgba(0, 0, 0, .06);
+      margin-right: .6rem
+    }
+
+    .brand-mark i {
+      font-size: 1.1rem;
+      color: #2b2f36
+    }
+
+    /* 상단 토글 (안읽음/읽음) */
+    .segmented {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, .18)
+    }
+
+    .segmented .btn {
+      border-radius: 999px;
+      border: 0;
+      padding: .45rem .95rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .85);
+      background: transparent
+    }
+
+    .segmented .btn.active {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .12)
+    }
+
+    /* ===== 입력/정렬 섹션 (홈 느낌, 노란 포인트) ===== */
+    .section-controls {
+      background: var(--card);
+      border-bottom: 1px solid #e8edf6
+    }
+
+    .section-padding {
+      padding-top: 36px;
+      padding-bottom: 36px
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 14px
+    }
+
+    .input-group-text {
+      border-radius: 14px 0 0 14px
+    }
+
+    .btn-round {
+      border-radius: 14px
+    }
+
+    .btn-primary {
+      --bs-btn-bg: var(--accent);
+      --bs-btn-border-color: var(--accent);
+      --bs-btn-color: var(--accent-ink);
+      --bs-btn-hover-bg: #e9be7e;
+      --bs-btn-hover-border-color: #e9be7e;
+      --bs-btn-hover-color: var(--accent-ink);
+    }
+
+    .btn-outline-primary {
+      --bs-btn-color: var(--accent);
+      --bs-btn-border-color: var(--accent);
+      --bs-btn-hover-bg: var(--accent);
+      --bs-btn-hover-border-color: var(--accent);
+      --bs-btn-hover-color: var(--accent-ink);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* 보기/정렬 토글(본문) */
+    .chips {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border)
+    }
+
+    .chips .btn {
+      border-radius: 999px;
+      border: 0;
+      padding: .42rem .9rem;
+      font-weight: 600;
+      color: #334155;
+      background: transparent
+    }
+
+    .chips .btn.active {
+      background: var(--accent);
+      color: var(--accent-ink);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .12)
+    }
+
+    /* ===== 리스트 그리드 ===== */
+    #listRoot {
+      display: grid;
+      gap: 1.25rem
+    }
+
+    #listRoot.cols-1 {
+      grid-template-columns: 1fr
+    }
+
+    #listRoot.cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    #listRoot.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+
+    @media (max-width: 991.98px) {
+      #listRoot.cols-3 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media (max-width: 767.98px) {
+
+      #listRoot.cols-2,
+      #listRoot.cols-3 {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* 카드/태그 */
+    .doc-card {
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      transition: transform .18s ease, box-shadow .2s ease
+    }
+
+    .doc-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, .08)
+    }
+
+    .tag {
+      font-size: .75rem;
+      padding: .35rem .6rem;
+      border-radius: 999px;
+      border: 1px solid;
+      white-space: nowrap
+    }
+
+    .t-cook {
+      background: #fff7ed;
+      color: #9a3412;
+      border-color: #fed7aa
+    }
+
+    .t-dl {
+      background: #f3e8ff;
+      color: #6b21a8;
+      border-color: #e9d5ff
+    }
+
+    .t-sci {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #dbeafe
+    }
+
+    .t-dev {
+      background: #ecfdf5;
+      color: #047857;
+      border-color: #d1fae5
+    }
+
+    .t-health {
+      background: #fdf2f8;
+      color: #9d174d;
+      border-color: #fbcfe8
+    }
+
+    .t-etc {
+      background: #f3f4f6;
+      color: #374151;
+      border-color: #e5e7eb
+    }
+
+    /* 오른쪽 3버튼 동일폭 */
+    .action-btn {
+      min-width: 140px;
+      white-space: nowrap
+    }
+
+    @media (max-width:991.98px) {
+      .action-btn {
+        width: 100%
+      }
+    }
+
+    /* 빈 상태 */
+    .empty-illustr {
+      width: 96px;
+      height: 96px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem auto;
+      color: #9ca3af;
+      font-size: 34px
+    }
+
+    /* 문서 섹션 내부 브랜드 블록 */
+    .brand-footer {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== Top Bar (홈 색상/로고만, 설명 제거) ===== -->
+  <header class="topbar">
+    <div class="container py-3">
+      <div class="d-flex align-items-center justify-content-between gap-3">
+        <a href="index.html" class="brand-link d-flex align-items-center">
+          <span class="brand-mark"><i class="bi-file-earmark-text"></i></span>
+          <span class="fw-bold fs-4">Linder</span>
+        </a>
+
+        <div class="segmented" id="tabToggle" role="tablist" aria-label="읽음 토글">
+          <button class="btn active" data-tab="UNREAD">안 읽음</button>
+          <button class="btn" data-tab="read">읽음</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== 입력/정렬 컨트롤 (홈 톤 + 노란 포인트) ===== -->
+  <section class="section-controls section-padding">
+    <div class="container">
+      <div class="row g-3 align-items-center">
+        <div class="col-12 col-lg-6">
+          <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi-link-45deg"></i></span>
+            <input id="urlInput" type="url" class="form-control" placeholder="웹 URL을 입력하세요" />
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <select id="topicSelect" class="form-select">
+            <option>자동 감지</option>
+            <option>요리</option>
+            <option>딥러닝</option>
+            <option>과학</option>
+            <option>프로그래밍</option>
+            <option>헬스케어</option>
+            <option>기타</option>
+          </select>
+        </div>
+
+        <!-- 숫자 대신 달력: 기본값 = 오늘+14 -->
+        <div class="col-6 col-lg-2">
+          <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi-calendar3"></i></span>
+            <input id="remindPicker" type="date" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-2">
+          <button id="addBtn" class="btn btn-primary w-100 btn-round">추가</button>
+        </div>
+
+        <!-- 정렬 · 보기 토글 -->
+        <div class="col-12 d-flex flex-wrap gap-3 mt-1">
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-muted small">정렬</span>
+            <div class="chips" id="sortToggle" aria-label="정렬">
+              <button class="btn active" data-sort="date_desc">날짜(최신)</button>
+              <button class="btn" data-sort="date_asc">날짜(오래된)</button>
+              <button class="btn" data-sort="tag">태그</button>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-muted small">보기</span>
+            <div class="chips" id="viewToggle" aria-label="보기열수">
+              <button class="btn active" data-cols="1">1열</button>
+              <button class="btn" data-cols="2">2열</button>
+              <button class="btn" data-cols="3">3열</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <small class="text-muted">
+            ※ URL을 입력하면 실제 페이지의 &lt;title&gt;을 가져와 제목으로 저장합니다.
+            리마인드 날짜는 기본으로 <strong>14일 뒤</strong>가 선택됩니다. 달력에서 변경할 수 있어요.
+          </small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 목록 ===== -->
+  <section class="section-padding">
+    <div class="container">
+      <div id="listRoot" class="cols-1"></div>
+
+      <div id="emptyState" class="text-center py-5 d-none">
+        <div class="empty-illustr"><i class="bi-book"></i></div>
+        <h5 class="mb-1" id="emptyTitle">아직 저장한 글이 없어요</h5>
+        <p class="text-muted">위에서 링크를 추가해보세요!</p>
+      </div>
+
+      <!-- 문서 섹션 내부의 브랜드 블록 (요청대로 유지) -->
+      <div class="brand-footer mt-5 p-4 text-center">
+        <div class="d-inline-flex align-items-center gap-2">
+          <span class="brand-mark"><i class="bi-file-earmark-text"></i></span>
+          <div class="text-start">
+            <div class="fw-bold">Linder</div>
+            <div class="small text-muted">ReadLater+</div>
+          </div>
+        </div>
+        <div class="text-muted small mt-2">Copyright © Linder</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 홈과 동일한 파도 배경 색상 -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#81B29A" fill-opacity="1"
+      d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+    </path>
+  </svg>
+  </footer>
+
+  <!-- ===== JS (기능 그대로) ===== -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    /* ---------- Demo 데이터 (태그 최대 3개) ---------- */
+    let articles = [
+      {
+        id: "1", url: "https://medium.com/react-18-best-practices",
+        title: "React 개발자를 위한 최신 베스트 프랙티스 가이드",
+        summary: "React 18의 새로운 기능과 성능 최적화/상태관리/컴포넌트 설계 팁.",
+        tags: ["프로그래밍"], status: "1", added_at: "2025-11-15", remind_at: "2025-11-29"
+      },
+      {
+        id: "2", url: "https://blog.example.com/ml-from-zero-to-one",
+        title: "머신러닝 기초부터 실전까지: 완벽 가이드",
+        summary: "데이터 전처리, 모델 선택, 평가 방법까지 단계별 실습.",
+        tags: ["딥러닝", "과학"], status: "1", added_at: "2025-11-14", remind_at: "2025-11-28"
+      },
+      {
+        id: "3", url: "https://science-daily.com/quantum-computing",
+        title: "양자 컴퓨팅의 새로운 돌파구: 실용화 단계로 진입",
+        summary: "향후 10년간 기술의 진전과 산업 적용 전망.",
+        tags: ["과학"], status: "1", added_at: "2025-11-13", remind_at: "2025-11-27"
+      },
+      {
+        id: "4", url: "https://cooking.com/healthy-mealprep",
+        title: "바쁜 직장인을 위한 건강한 밀프렙 레시피 10가지",
+        summary: "30분 이내 레시피와 보관/재가열 팁 정리.",
+        tags: ["요리"], status: "0", added_at: "2025-11-12", remind_at: "2025-11-26"
+      },
+      {
+        id: "5", url: "https://arxiv.org/abs/2410.12345",
+        title: "Self-Supervised Denoising for Low-dose CT",
+        summary: "저선량 CT 노이즈 억제를 위한 자가지도 학습 프레임워크.",
+        tags: ["헬스케어", "딥러닝"], status: "1", added_at: "2025-11-10", remind_at: "2025-11-24"
+      },
+      {
+        id: "6", url: "https://dev.to/post/ts-best-patterns",
+        title: "TypeScript 실전 패턴 모음",
+        summary: "유틸리티 타입, 제네릭, 안전한 API 모델링 등.",
+        tags: ["프로그래밍"], status: "0", added_at: "2025-11-09", remind_at: "2025-11-23"
+      },
+      {
+        id: "7", url: "https://khanacademy.org/ai-basics",
+        title: "AI 기초 수업 로드맵",
+        summary: "확률·미분·선형대수 핵심 개념 로드맵.",
+        tags: ["과학", "딥러닝"], status: "1", added_at: "2025-11-08", remind_at: "2025-11-22"
+      },
+      {
+        id: "8", url: "https://towardsdatascience.com/pytorch-tricks",
+        title: "PyTorch 훈련 안정화 트릭 15가지",
+        summary: "AMP, Grad Clip, Seed 관리 등.",
+        tags: ["딥러닝", "프로그래밍"], status: "1", added_at: "2025-11-07", remind_at: "2025-11-21"
+      },
+      {
+        id: "9", url: "https://vercel.com/blog/web-performance-2025",
+        title: "2025 웹 성능 체크리스트",
+        summary: "LCP·INP·CLS 최적화와 Edge 캐싱 전략.",
+        tags: ["프로그래밍"], status: "1", added_at: "2025-11-06", remind_at: "2025-11-20"
+      },
+      {
+        id: "10", url: "https://nejm.org/doi/abc",
+        title: "의료 AI 규제 업데이트 브리핑",
+        summary: "임상 안전성 가이드와 리스크 관리 이슈.",
+        tags: ["헬스케어"], status: "0", added_at: "2025-11-05", remind_at: "2025-11-19"
+      },
+    ];
+
+    /* ---------- 상태 & 유틸 ---------- */
+    let activeTab = "UNREAD";           // 'UNREAD' | 'read'
+    let sortMode = "date_desc";        // 'date_desc' | 'date_asc' | 'tag'
+    let layoutCols = 1;                 // 1 | 2 | 3
+
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+    const host = (u) => { try { return new URL(u).hostname } catch { return "unknown" } };
+    const tagClass = (t) => {
+      if (t === "요리") return "t-cook";
+      if (t === "딥러닝") return "t-dl";
+      if (t === "과학") return "t-sci";
+      if (t === "프로그래밍") return "t-dev";
+      if (t === "헬스케어") return "t-health";
+      return "t-etc";
+    };
+    const uniq = (arr) => [...new Set(arr)].slice(0, 3);
+
+    // 기본 달력 = 오늘 + 14일
+    (function initRemindPicker() {
+      const p = $("#remindPicker");
+      const now = new Date();
+      const d = new Date(now); d.setDate(now.getDate() + 14);
+      p.value = d.toISOString().slice(0, 10);
+      p.min = now.toISOString().slice(0, 10);
+    })();
+
+    async function fetchTitle(url) {
+      try {
+        const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+        const data = await res.json();
+        const doc = new DOMParser().parseFromString(data.contents, 'text/html');
+        return doc.querySelector('title')?.textContent?.trim() || `새로 추가된 글 (${host(url)})`;
+      } catch {
+        return `새로 추가된 글 (${host(url)})`;
+      }
+    }
+    function inferTags(url, sel) {
+      if (sel && sel !== "자동 감지") return [sel];
+      const u = url.toLowerCase();
+      const guess = [];
+      if (u.includes("arxiv") || u.includes("pytorch") || u.includes("datascience")) guess.push("딥러닝");
+      if (u.includes("dev.") || u.includes("vercel") || u.includes("react")) guess.push("프로그래밍");
+      if (u.includes("nejm") || u.includes("ct") || u.includes("health")) guess.push("헬스케어");
+      if (u.includes("cooking") || u.includes("recipe")) guess.push("요리");
+      if (u.includes("science")) guess.push("과학");
+      if (guess.length === 0) guess.push("기타");
+      return uniq(guess);
+    }
+
+    /* ---------- 동작 ---------- */
+    async function addArticle() {
+      const url = $("#urlInput").value.trim();
+      const sel = $("#topicSelect").value;
+      const remindAt = $("#remindPicker").value; // 달력 값 직접 사용
+      if (!url) return;
+
+      $("#addBtn").disabled = true; $("#addBtn").innerText = "추가 중...";
+
+      const title = await fetchTitle(url);
+      const now = new Date(); const added = now.toISOString().slice(0, 10);
+
+      articles.unshift({
+        id: String(Date.now()),
+        url, title,
+        summary: "이 글은 곧 AI에 의해 요약될 예정입니다. (데모)",
+        tags: inferTags(url, sel),
+        status: "1",
+        added_at: added,
+        remind_at: remindAt
+      });
+
+      $("#urlInput").value = "";
+      render();
+      $("#addBtn").disabled = false; $("#addBtn").innerText = "추가";
+    }
+
+    function markAsRead(id) {
+      articles = articles.map(a => a.id === id ? { ...a, status: "0" } : a);
+      render();
+    }
+    function softDelete(id) {
+      // 상태 2 = 삭제됨(소프트), 목록에서 숨김
+      articles = articles.map(a => a.id === id ? { ...a, status: "2" } : a);
+      render();
+    }
+    async function copyUrl(url, btn) {
+      try {
+        await navigator.clipboard.writeText(url);
+        const prev = btn.innerHTML;
+        btn.innerHTML = '<i class="bi-check-lg me-1"></i>복사됨';
+        setTimeout(() => btn.innerHTML = prev, 900);
+      } catch { }
+    }
+
+    /* ---------- 정렬 ---------- */
+    function sortArticles(list) {
+      if (sortMode === "date_desc") {
+        list.sort((a, b) => (b.added_at > a.added_at ? 1 : -1));
+      } else if (sortMode === "date_asc") {
+        list.sort((a, b) => (a.added_at > b.added_at ? 1 : -1));
+      } else if (sortMode === "tag") {
+        list.sort((a, b) => ((a.tags?.[0] || "") > (b.tags?.[0] || "") ? 1 : -1));
+      }
+      return list;
+    }
+
+    /* ---------- 렌더 ---------- */
+    function render() {
+      const root = $("#listRoot");
+      root.classList.remove("cols-1", "cols-2", "cols-3");
+      root.classList.add(`cols-${layoutCols}`);
+      root.innerHTML = "";
+
+      const filtered = sortArticles(
+        articles.filter(a => (a.status === "1" && activeTab === "UNREAD") || (a.status === "0" && activeTab === "read"))
+      );
+
+      $("#emptyState").classList.toggle("d-none", filtered.length !== 0);
+      $("#emptyTitle").innerText = activeTab === "UNREAD" ? "아직 저장한 글이 없어요" : "읽은 글이 없어요";
+
+      filtered.forEach(a => {
+        const card = document.createElement("div");
+        card.className = "doc-card p-4";
+
+        const tagsHtml = (a.tags || []).slice(0, 3).map(t => `<span class="tag ${tagClass(t)}">${t}</span>`).join(" ");
+
+        card.innerHTML = `
+          <div class="d-flex flex-column flex-xl-row gap-3">
+            <div class="flex-grow-1">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <i class="bi-globe text-muted"></i>
+                <span class="text-muted small">${host(a.url)}</span>
+                <div class="ms-1 d-flex gap-1 flex-wrap">${tagsHtml}</div>
+              </div>
+              <h5 class="mb-2">
+                <a class="text-decoration-none" target="_blank" rel="noopener noreferrer" href="${a.url}">${a.title}</a>
+              </h5>
+              <p class="text-muted mb-3">${a.summary}</p>
+              <div class="d-flex gap-3 small text-muted">
+                <span>추가: ${a.added_at}</span>
+                ${a.remind_at ? `<span>리마인드: ${a.remind_at}</span>` : ``}
+              </div>
+            </div>
+
+            <div class="d-flex flex-xl-column gap-2">
+              <a class="btn btn-outline-primary btn-round action-btn" target="_blank" rel="noopener noreferrer" href="${a.url}">
+                <i class="bi-box-arrow-up-right me-1"></i>열기
+              </a>
+
+              ${a.status === "1"
+            ? `<button class="btn btn-primary btn-round action-btn" data-act="read"><i class="bi-check2 me-1"></i>읽음으로 표시</button>`
+            : `<button class="btn btn-danger btn-round action-btn" data-act="delete"><i class="bi-trash me-1"></i>문서 삭제</button>`
+          }
+
+              <button class="btn btn-outline-secondary btn-round action-btn" data-act="copy"><i class="bi-clipboard me-1"></i>복사</button>
+            </div>
+          </div>
+        `;
+
+        const secondBtn = card.querySelector('[data-act="read"],[data-act="delete"]');
+        if (secondBtn) {
+          if (a.status === "1") secondBtn.addEventListener("click", () => markAsRead(a.id));
+          else secondBtn.addEventListener("click", () => softDelete(a.id));
+        }
+        const copyBtn = card.querySelector('[data-act="copy"]');
+        copyBtn.addEventListener("click", (e) => copyUrl(a.url, e.currentTarget));
+
+        root.appendChild(card);
+      });
+
+      // 세그먼트 활성화 상태 동기화
+      $$("#tabToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.tab === activeTab));
+      $$("#sortToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.sort === sortMode));
+      $$("#viewToggle .btn").forEach(b => b.classList.toggle("active", Number(b.dataset.cols) === layoutCols));
+    }
+
+    /* ---------- 이벤트 ---------- */
+    $("#addBtn").addEventListener("click", addArticle);
+
+    $$("#tabToggle .btn").forEach(btn => btn.addEventListener("click", () => {
+      activeTab = btn.dataset.tab; render();
+    }));
+    $$("#sortToggle .btn").forEach(btn => btn.addEventListener("click", () => {
+      sortMode = btn.dataset.sort; render();
+    }));
+    $$("#viewToggle .btn").forEach(btn => btn.addEventListener("click", () => {
+      layoutCols = Number(btn.dataset.cols); render();
+    }));
+
+    render();
+  </script>
+</body>
+
+</html>
