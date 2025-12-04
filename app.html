@@ -416,18 +416,24 @@
             border-radius: 22px;
             box-shadow: 0 18px 40px rgba(15, 23, 42, 0.26);
             text-align: center;
+            /* 제목 + 본문 기본 중앙 정렬 */
         }
 
         .tour-box-title {
             font-weight: 700;
             font-size: 1.25rem;
-            margin-bottom: .3rem;
+            margin-bottom: 0.7rem;
+            /* 제목과 본문 사이 간격 ↑ */
             color: var(--ink);
+            text-align: center;
         }
 
         .tour-box-body {
             font-size: .95rem;
             color: #4b5563;
+            line-height: 1.4;
+            /* 줄 간 간격 약간 줄이기 */
+            text-align: center;
         }
 
         /* === 단계별 코치마크 오버레이 === */
@@ -455,6 +461,16 @@
             position: absolute;
             inset: 0;
             background: rgba(15, 23, 42, 0.45);
+        }
+
+        .tour-step-overlay .tour-bubble .fw-bold {
+            margin-bottom: 0.7rem !important;
+            /* 제목–본문 사이 간격 조금 넓게 */
+        }
+
+        .tour-step-overlay .tour-bubble p {
+            line-height: 1.4;
+            /* 본문 줄 간격 약간 줄이기 */
         }
 
         .tour-bubble {
@@ -527,6 +543,21 @@
 
             100% {
                 box-shadow: 0 0 0 0 rgba(242, 204, 143, 0);
+            }
+        }
+
+        /* 모바일 전용: 투어 카드/하이라이트 레이어 조정 */
+        @media (max-width: 767.98px) {
+
+            /* 모바일에서는 링크 카드 하이라이트가 소개 카드보다 뒤로 가도록 */
+            .tour-highlight {
+                z-index: 1500 !important;
+            }
+
+            /* 4단계(center-mode, "이제 나만의 링크")는 모바일에서 화면 아래쪽(약 85%)에 위치 */
+            .tour-step-overlay.center-mode .tour-bubble {
+                top: 85%;
+                transform: translate(-50%, -85%);
             }
         }
     </style>

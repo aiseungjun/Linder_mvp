@@ -75,16 +75,20 @@
       padding: .85rem 1.2rem;
     }
 
-    /* 알림/피드백 카드를 우측 상단으로 살짝 */
+    /* 데스크탑에서 카드 위치를 비율 기반으로 조정 */
     @media (min-width: 992px) {
       .feedback-card-raise {
-        transform: translate(12px, -18px);
+        transform: translate(0, 0);
+        /* px 이동 제거 */
+        margin-top: 2vh;
+        /* 화면 높이 기준 약간 내려주기 */
       }
     }
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1600px) {
       .feedback-card-raise {
-        transform: translate(18px, -28px);
+        margin-top: 0;
+        /* 4K 같은 큰 화면에서는 거의 중앙으로 */
       }
     }
 
@@ -229,6 +233,48 @@
       object-fit: cover;
       /* 중앙 기준으로 채우기 */
     }
+
+
+    /* ===== HERO 레이아웃 재정의 (데스크탑 공통) ===== */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      /* 항상 화면 높이만큼 */
+      overflow: hidden;
+    }
+
+    /* 곡선 SVG는 화면에 붙여두고 레이아웃에서는 제외 */
+    .hero-section>svg {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .hero-section>svg:first-of-type {
+      top: 0;
+    }
+
+    .hero-section>svg:last-of-type {
+      bottom: 0;
+    }
+
+    /* 실제 내용 컨테이너는 항상 위에 보이게 */
+    .hero-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 데스크탑에서 텍스트+카드 묶음을 화면 가운데에 맞추기 */
+    @media (min-width: 992px) {
+      .hero-section .row {
+        min-height: calc(100vh - 200px);
+        /* 위에 네비/곡선 조금 빼주기 */
+        display: flex;
+        align-items: center;
+        /* 세로 가운데 */
+      }
+    }
   </style>
 </head>
 
@@ -318,7 +364,8 @@
     </div>
 
     <!-- HERO -->
-    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+    <!-- d-flex justify-content-center align-items-center -->
+    <section class="hero-section" id="section_1">
       <div class="section-overlay"></div>
 
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -440,14 +487,15 @@
           <div class="col-lg-8 col-12">
             <h2 class="mb-lg-3">뉴스레터 구독</h2>
             <div class="section-bg-image-block">
-              <p class="text-center">이메일을 남겨주시면 현재 이용자들의 <strong>URL 이용 통계</strong>(주제 분포, 월간 저장/읽음 횟수, 읽음 달성도 등), 최신 기능
+              <p class="text-center">이메일을 남겨주시면 현재 이용자들의 <strong>URL 이용 통계</strong>(주제 분포, 월간 저장/읽음 횟수, 읽음 달성도 등), 최신
+                기능
                 및 사용법을 레터로 정리해서 보내드립니다.</p>
               <form action="#" method="get" class="custom-form mt-lg-4 mt-2" role="form">
                 <div class="input-group input-group-lg">
                   <span class="input-group-text bi-envelope" id="basic-addon1"></span>
                   <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control"
                     placeholder="Email address" required="">
-                  <button type="submit" class="form-control">Subscribe</button>
+                  <button type="submit" id="go-app" class="form-control">Subscribe</button>
                 </div>
               </form>
             </div>
@@ -508,8 +556,9 @@
 
             <div class="mt-4 text-center">
               <p class="mb-0">
-                인터넷에는 전공 공부 블로그, 정주행 웹툰, 커뮤니티 레시피 등 나중에 보고 싶은 링크가 넘칩니다.
-                탭/북마크에 쌓아두면 잊기 쉽죠. <br> <strong>Linder</strong>는 요약·태깅·리마인드로 <strong>‘읽음 완주’</strong>를 돕는 개인 생산성 도구입니다.
+                인터넷에는 전공 공부 블로그, 정주행할 웹툰, 커뮤니티 레시피 등 나중에 보고 싶은 링크가 넘칩니다.
+                탭/북마크에 쌓아두면 잊기 쉽죠. <br> <strong>Linder</strong>는 요약·태깅·리마인드로 <strong>‘읽음 완주’</strong>를 돕는 개인 생산성
+                도구입니다.
               </p>
             </div>
           </div>
@@ -545,7 +594,7 @@
                 <a href="#" class="events-title mb-3"><strong>링크 붙여넣기</strong></a>
                 <p class="mb-0">읽고 싶은 웹 페이지의 URL을 간단히 붙여넣기만 하면 됩니다.</p>
                 <div class="d-flex flex-wrap border-top mt-4 pt-3">
-                  <div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">미리보기</a>
+                  <div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">시작하기</a>
                   </div>
                 </div>
               </div>
@@ -571,7 +620,7 @@
                 <a href="#" class="events-title mb-3"><strong>AI 요약/태깅</strong></a>
                 <p class="mb-0">AI가 자동으로 내용을 요약하고 적절한 주제 태그를 생성합니다.</p>
                 <div class="d-flex flex-wrap border-top mt-4 pt-3">
-                  <div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">미리보기</a>
+                  <div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">시작하기</a>
                   </div>
                 </div>
               </div>
@@ -597,7 +646,7 @@
                 <a href="#" class="events-title mb-3"><strong>링크 관리</strong></a>
                 <p class="mb-0">정리된 글들을 읽음/안 읽음 및 주제로 분류하고, 리마인드 날짜를 설정합니다.</p>
                 <div class="d-flex flex-wrap border-top mt-4 pt-3">
-                  <div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">미리보기</a>
+                  <div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">시작하기</a>
                   </div>
                 </div>
               </div>
@@ -623,7 +672,7 @@
                 <a href="#" class="events-title mb-3"><strong>리마인드</strong></a>
                 <p class="mb-0">안 읽은 문서가 설정한 리마인드 날짜까지 읽지 않으면 알림으로 알려줍니다.</p>
                 <div class="d-flex flex-wrap border-top mt-4 pt-3">
-                  <div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">미리보기</a>
+                  <div class="d-flex align-items-center ms-lg-auto"><a href="#section_5" class="btn custom-btn">시작하기</a>
                   </div>
                 </div>
               </div>
@@ -648,7 +697,7 @@
             </div>
 
             <div class="custom-form contact-form">
-              <p class="mb-4 text-center">아래 버튼으로 실제 동작 모습을 확인하세요.</p>
+              <p class="mb-4 text-center">아래 버튼으로 Linder를 시작하세요.</p>
               <a id="goo-app" href="app.html" class="btn custom-btn w-100">Linder 시작!</a>
             </div>
           </div>
@@ -707,25 +756,55 @@
     </svg>
   </footer>
 
+  <div id="popup" style="display:none;">
+    <div class="w-[26rem] max-w-[92vw] rounded-2xl bg-white p-6 shadow-2xl">
+      <div class="flex items-start gap-3">
+        <i class="ri-checkbox-circle-line text-2xl"></i>
+        <div>
+          <h3 class="text-lg font-semibold tracking-tight">제출 완료!</h3>
+          <p class="mt-1 text-sm text-zinc-600">
+            피드백 감사합니다. 런칭 소식을 이메일로 가장 먼저 알려드릴게요. 🚀
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   <script>
     (function () {
       function syncToSmallerHeight() {
         const imgs = Array.from(document.querySelectorAll('.equal-pair'));
         if (imgs.length < 2) return;
 
-        // 높이 초기화 후 현재 렌더된 높이 측정
-        imgs.forEach(i => i.style.height = '');
-        // 각 이미지의 현재 표시 높이 계산 (반응형 폭 반영)
+        // 이미지 높이 초기화
+        imgs.forEach(i => {
+          i.style.height = '';
+        });
+
+        // 현재 렌더된 높이 기준으로 최소 높이 구하기
         const heights = imgs.map(i => i.clientHeight || i.getBoundingClientRect().height);
         const minH = Math.min(...heights);
 
-        // 둘 다 작은 쪽 높이에 맞추기
-        imgs.forEach(i => i.style.height = minH + 'px');
+        // 이미지 높이를 작은 쪽에 맞추기
+        imgs.forEach(i => {
+          i.style.height = minH + 'px';
+        });
+
+        // 아래 텍스트 블록(member-block-info) 높이도 맞추기
+        const infoBlocks = Array.from(document.querySelectorAll('.member-block-info'));
+        if (infoBlocks.length > 1) {
+          infoBlocks.forEach(b => (b.style.minHeight = ''));
+          const infoHeights = infoBlocks.map(
+            b => b.clientHeight || b.getBoundingClientRect().height
+          );
+          const maxInfoH = Math.max(...infoHeights);
+          infoBlocks.forEach(b => {
+            b.style.minHeight = maxInfoH + 'px';
+          });
+        }
       }
-      imgs.forEach(i => {
-        const info = i.closest('.member-block')?.querySelector('.member-block-info');
-        if (info) info.style.minHeight = minH + 'px';
-      });
 
       window.addEventListener('load', syncToSmallerHeight);
       window.addEventListener('resize', syncToSmallerHeight);
@@ -894,20 +973,30 @@
           "id": getUVfromCookie(),
           "email": email,
           "advice": advice
-        })
+        });
 
+        // 로딩 시작
         $.busyLoadFull("show");
 
         axios.get(addrScript + '?action=insert&table=review_f&data=' + encodeURIComponent(finalData))
           .then(response => {
             console.log(response.data.data);
-            // alert(JSON.stringify(response));
+
+            // 입력값 비우기
             $('#submit-email').val('');
             $('#submit-advice').val('');
-            $.busyLoadFull("hide");
-          })
 
-        $.fn.simplePopup({ type: 'html', htmlSelector: "#popup" });
+            // 제출 성공 팝업
+            $.fn.simplePopup({ type: 'html', htmlSelector: "#popup" });
+          })
+          .catch(error => {
+            console.error(error);
+            alert("전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+          })
+          .finally(() => {
+            // 성공/실패와 상관없이 로딩은 무조건 꺼지게
+            $.busyLoadFull("hide");
+          });
       });
 
       $(document).on('click', '#go-app', function () {
@@ -930,32 +1019,6 @@
 
 
   </script>
-
-
-  <div id="popup" style="display:none;">
-    <div class="w-[26rem] max-w-[92vw] rounded-2xl bg-white p-6 shadow-2xl">
-      <div class="flex items-start gap-3">
-        < i class="ri-checkbox-circle-line text-2xl"></i>
-          <div>
-            <h3 class="text-lg font-semibold tracking-tight">제출 완료!</h3>
-            <p class="mt-1 text-sm text-zinc-600">
-              피드백 감사합니다. 런칭 소식을 이메일로 가장 먼저 알려드릴게요. 🚀
-            </p>
-          </div>
-      </div>
-
-      <div class="mt-5 grid gap-2 text-sm text-zinc-700">
-        <div class="flex items-center gap-2">
-          <i class="ri-mail-send-line"></i>
-          <span>알림 이메일 구독이 등록되었습니다.</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <i class="ri-heart-2-line"></i>
-          <span>남겨주신 의견은 제품 개선에 적극 반영됩니다.</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </body>
 
