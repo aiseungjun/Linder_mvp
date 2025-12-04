@@ -190,8 +190,6 @@
       #section_2 {
         margin-top: clamp(384px, 12vw, 512px);
       }
-
-      /* About Linder를 더 아래로 */
     }
 
     .equal-pair {
@@ -232,48 +230,6 @@
       height: 100%;
       object-fit: cover;
       /* 중앙 기준으로 채우기 */
-    }
-
-
-    /* ===== HERO 레이아웃 재정의 (데스크탑 공통) ===== */
-    .hero-section {
-      position: relative;
-      min-height: 100vh;
-      /* 항상 화면 높이만큼 */
-      overflow: hidden;
-    }
-
-    /* 곡선 SVG는 화면에 붙여두고 레이아웃에서는 제외 */
-    .hero-section>svg {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      z-index: 1;
-    }
-
-    .hero-section>svg:first-of-type {
-      top: 0;
-    }
-
-    .hero-section>svg:last-of-type {
-      bottom: 0;
-    }
-
-    /* 실제 내용 컨테이너는 항상 위에 보이게 */
-    .hero-section .container {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* 데스크탑에서 텍스트+카드 묶음을 화면 가운데에 맞추기 */
-    @media (min-width: 992px) {
-      .hero-section .row {
-        min-height: calc(100vh - 200px);
-        /* 위에 네비/곡선 조금 빼주기 */
-        display: flex;
-        align-items: center;
-        /* 세로 가운데 */
-      }
     }
   </style>
 </head>
@@ -365,7 +321,7 @@
 
     <!-- HERO -->
     <!-- d-flex justify-content-center align-items-center -->
-    <section class="hero-section" id="section_1">
+    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
       <div class="section-overlay"></div>
 
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
