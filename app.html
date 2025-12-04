@@ -2,859 +2,1157 @@
 <html lang="ko">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Linder — ReadLater+ App</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Linder — ReadLater+ App</title>
 
-  <!-- Base styles (홈과 동일 폰트/템플릿) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/bootstrap-icons.css" rel="stylesheet" />
-  <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet" />
+    <!-- Base styles (홈과 동일 폰트/템플릿) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet" />
 
-  <style>
-    :root {
-      --ink: #3D405B;
-      /* 홈 상단바 인디고 */
-      --accent: #F2CC8F;
-      /* 홈의 노란 포인트 */
-      --accent-ink: #111827;
-      --sky: #F7FBFF;
-      /* 살짝 하늘색 배경 */
-      --card: #ffffff;
-      --border: #ececf3;
-    }
+    <style>
+        :root {
+            --ink: #3D405B;
+            /* 홈 상단바 인디고 */
+            --accent: #F2CC8F;
+            /* 홈의 노란 포인트 */
+            --accent-ink: #111827;
+            --sky: #F7FBFF;
+            /* 살짝 하늘색 배경 */
+            --card: #ffffff;
+            --border: #ececf3;
+        }
 
-    body {
-      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: var(--sky);
-      font-size: 1.06rem;
-      color: #0f172a;
-    }
+        body {
+            font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            background: var(--sky);
+            font-size: 1.06rem;
+            color: #0f172a;
+        }
 
-    /* ===== Top Bar (홈 색상 적용, 설명 제거) ===== */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1030;
-      background: var(--ink);
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
-    }
+        /* ===== Top Bar ===== */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            background: var(--ink);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+        }
 
-    .topbar .brand-link {
-      color: #fff;
-      text-decoration: none;
-    }
+        .topbar .brand-link {
+            color: #fff;
+            text-decoration: none;
+        }
 
-    .brand-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #f2f4f8, #e6eefc);
-      border: 1px solid rgba(0, 0, 0, .06);
-      margin-right: .6rem
-    }
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f2f4f8, #e6eefc);
+            border: 1px solid rgba(0, 0, 0, .06);
+            margin-right: .6rem;
+        }
 
-    .brand-mark i {
-      font-size: 1.1rem;
-      color: #2b2f36
-    }
+        .brand-mark i {
+            font-size: 1.1rem;
+            color: #2b2f36;
+        }
 
-    /* 상단 토글 (안읽음/읽음) */
-    .segmented {
-      display: inline-flex;
-      gap: 6px;
-      padding: 6px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .12);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, .18)
-    }
+        /* 상단 토글 (안읽음/읽음) */
+        .segmented {
+            display: inline-flex;
+            gap: 6px;
+            padding: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .12);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, .18);
+        }
 
-    .segmented .btn {
-      border-radius: 999px;
-      border: 0;
-      padding: .45rem .95rem;
-      font-weight: 700;
-      color: rgba(255, 255, 255, .85);
-      background: transparent
-    }
+        .segmented .btn {
+            border-radius: 999px;
+            border: 0;
+            padding: .45rem .95rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .85);
+            background: transparent;
+        }
 
-    .segmented .btn.active {
-      background: #fff;
-      color: var(--ink);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, .12)
-    }
+        .segmented .btn.active {
+            background: #fff;
+            color: var(--ink);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
+        }
 
-    /* ===== 입력/정렬 섹션 (홈 느낌, 노란 포인트) ===== */
-    .section-controls {
-      background: var(--card);
-      border-bottom: 1px solid #e8edf6
-    }
+        /* ===== 입력/정렬 섹션 ===== */
+        .section-controls {
+            background: var(--card);
+            border-bottom: 1px solid #e8edf6;
+        }
 
-    .section-padding {
-      padding-top: 36px;
-      padding-bottom: 36px
-    }
+        .section-padding {
+            padding-top: 36px;
+            padding-bottom: 36px;
+        }
 
-    .form-control,
-    .form-select {
-      border-radius: 14px
-    }
+        .form-control,
+        .form-select {
+            border-radius: 14px;
+        }
 
-    .input-group-text {
-      border-radius: 14px 0 0 14px
-    }
+        .input-group-text {
+            border-radius: 14px 0 0 14px;
+        }
 
-    .btn-round {
-      border-radius: 14px
-    }
+        .btn-round {
+            border-radius: 14px;
+        }
 
-    .btn-primary {
-      --bs-btn-bg: var(--accent);
-      --bs-btn-border-color: var(--accent);
-      --bs-btn-color: var(--accent-ink);
-      --bs-btn-hover-bg: #e9be7e;
-      --bs-btn-hover-border-color: #e9be7e;
-      --bs-btn-hover-color: var(--accent-ink);
-    }
+        .btn-primary {
+            --bs-btn-bg: var(--accent);
+            --bs-btn-border-color: var(--accent);
+            --bs-btn-color: var(--accent-ink);
+            --bs-btn-hover-bg: #e9be7e;
+            --bs-btn-hover-border-color: #e9be7e;
+            --bs-btn-hover-color: var(--accent-ink);
+        }
 
-    .btn-outline-primary {
-      --bs-btn-color: var(--accent);
-      --bs-btn-border-color: var(--accent);
-      --bs-btn-hover-bg: var(--accent);
-      --bs-btn-hover-border-color: var(--accent);
-      --bs-btn-hover-color: var(--accent-ink);
-      color: var(--accent);
-      border-color: var(--accent);
-    }
+        .btn-outline-primary {
+            --bs-btn-color: var(--accent);
+            --bs-btn-border-color: var(--accent);
+            --bs-btn-hover-bg: var(--accent);
+            --bs-btn-hover-border-color: var(--accent);
+            --bs-btn-hover-color: var(--accent-ink);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
 
-    /* 보기/정렬 토글(본문) */
-    .chips {
-      display: inline-flex;
-      gap: 6px;
-      padding: 6px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--border)
-    }
+        /* 보기/정렬 토글(본문) */
+        .chips {
+            display: inline-flex;
+            gap: 6px;
+            padding: 6px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid var(--border);
+        }
 
-    .chips .btn {
-      border-radius: 999px;
-      border: 0;
-      padding: .42rem .9rem;
-      font-weight: 600;
-      color: #334155;
-      background: transparent
-    }
+        .chips .btn {
+            border-radius: 999px;
+            border: 0;
+            padding: .42rem .9rem;
+            font-weight: 600;
+            color: #334155;
+            background: transparent;
+        }
 
-    .chips .btn.active {
-      background: var(--accent);
-      color: var(--accent-ink);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, .12)
-    }
+        .chips .btn.active {
+            background: var(--accent);
+            color: var(--accent-ink);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+        }
 
-    /* ===== 리스트 그리드 ===== */
-    #listRoot {
-      display: grid;
-      gap: 1.25rem
-    }
+        /* ===== 리스트 그리드 ===== */
+        #listRoot {
+            display: grid;
+            gap: 1.25rem;
+        }
 
-    #listRoot.cols-1 {
-      grid-template-columns: 1fr
-    }
+        #listRoot.cols-1 {
+            grid-template-columns: 1fr;
+        }
 
-    #listRoot.cols-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr))
-    }
+        #listRoot.cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
 
-    #listRoot.cols-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr))
-    }
+        #listRoot.cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
 
-    @media (max-width: 991.98px) {
-      #listRoot.cols-3 {
-        grid-template-columns: repeat(2, 1fr)
-      }
-    }
+        @media (max-width: 991.98px) {
+            #listRoot.cols-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-    @media (max-width: 767.98px) {
+        @media (max-width: 767.98px) {
 
-      #listRoot.cols-2,
-      #listRoot.cols-3 {
-        grid-template-columns: 1fr
-      }
-    }
+            #listRoot.cols-2,
+            #listRoot.cols-3 {
+                grid-template-columns: 1fr;
+            }
+        }
 
-    /* 카드/태그 */
-    .doc-card {
-      background: #fff;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      transition: transform .18s ease, box-shadow .2s ease
-    }
+        /* 카드/태그 */
+        .doc-card {
+            background: #fff;
+            border-radius: 4px;
+            /* 둥근 정도를 줄여 거의 직사각형 느낌 */
+            border: 1px solid var(--border);
+            transition: transform .18s ease, box-shadow .2s ease;
+        }
 
-    .doc-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, .08)
-    }
+        .doc-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, .08);
+        }
 
-    .tag {
-      font-size: .75rem;
-      padding: .35rem .6rem;
-      border-radius: 999px;
-      border: 1px solid;
-      white-space: nowrap
-    }
+        .doc-card h5,
+        .doc-card p {
+            word-break: break-word;
+        }
 
-    .t-cook {
-      background: #fff7ed;
-      color: #9a3412;
-      border-color: #fed7aa
-    }
+        .tag {
+            font-size: .75rem;
+            padding: .35rem .6rem;
+            border-radius: 999px;
+            border: 1px solid;
+            white-space: nowrap;
+        }
 
-    .t-dl {
-      background: #f3e8ff;
-      color: #6b21a8;
-      border-color: #e9d5ff
-    }
+        .t-cook {
+            background: #fff7ed;
+            color: #9a3412;
+            border-color: #fed7aa;
+        }
 
-    .t-sci {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border-color: #dbeafe
-    }
+        .t-dl {
+            background: #f3e8ff;
+            color: #6b21a8;
+            border-color: #e9d5ff;
+        }
 
-    .t-dev {
-      background: #ecfdf5;
-      color: #047857;
-      border-color: #d1fae5
-    }
+        .t-sci {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border-color: #dbeafe;
+        }
 
-    .t-health {
-      background: #fdf2f8;
-      color: #9d174d;
-      border-color: #fbcfe8
-    }
+        .t-dev {
+            background: #ecfdf5;
+            color: #047857;
+            border-color: #d1fa5;
+        }
 
-    .t-etc {
-      background: #f3f4f6;
-      color: #374151;
-      border-color: #e5e7eb
-    }
+        .t-health {
+            background: #fdf2f8;
+            color: #9d174d;
+            border-color: #fbcfe8;
+        }
 
-    /* 오른쪽 3버튼 동일폭 */
-    .action-btn {
-      min-width: 140px;
-      white-space: nowrap
-    }
+        .t-etc {
+            background: #f3f4f6;
+            color: #374151;
+            border-color: #e5e7eb;
+        }
 
-    @media (max-width:991.98px) {
-      .action-btn {
-        width: 100%
-      }
-    }
+        /* 오른쪽 3버튼 동일폭 */
+        .action-btn {
+            min-width: 140px;
+            white-space: nowrap;
+        }
 
-    /* 빈 상태 */
-    .empty-illustr {
-      width: 96px;
-      height: 96px;
-      border-radius: 999px;
-      background: #f3f4f6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem auto;
-      color: #9ca3af;
-      font-size: 34px
-    }
+        @media (max-width: 991.98px) {
+            .action-btn {
+                width: 100%;
+            }
+        }
 
-    /* 문서 섹션 내부 브랜드 블록 */
-    .brand-footer {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 16px
-    }
+        /* 빈 상태 */
+        .empty-illustr {
+            width: 96px;
+            height: 96px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            color: #9ca3af;
+            font-size: 34px;
+        }
 
-    #tagFilterButtons .btn.active {
-      background: var(--accent);
-      color: var(--accent-ink);
-      border-color: var(--accent);
-    }
-  </style>
+        /* 문서 섹션 내부 브랜드 블록 */
+        .brand-footer {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        /* 정렬/보기 레이아웃 */
+        .sort-view-toolbar {
+            display: flex;
+            flex-direction: column;
+            /* 모바일 기본: 세로 */
+            align-items: stretch;
+            width: 100%;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .sort-view-left,
+        .sort-view-right,
+        .sort-view-help {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            /* 모바일에선 가운데 */
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sort-view-help {
+            margin-top: 0;
+        }
+
+        /* Linder 사용법 버튼 크기 (추가 버튼의 절반 정도 폭) */
+        .linder-help-btn {
+            width: 40%;
+            min-width: 140px;
+        }
+
+        @media (min-width: 768px) {
+            .sort-view-toolbar {
+                flex-direction: row;
+                /* 데스크톱: 가로 배치 */
+            }
+
+            .sort-view-left,
+            .sort-view-right,
+            .sort-view-help {
+                width: 33.3333%;
+            }
+
+            /* 왼쪽 / 가운데 / 오른쪽 정렬 */
+            .sort-view-left {
+                justify-content: flex-start;
+                text-align: left;
+            }
+
+            .sort-view-right {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .sort-view-help {
+                justify-content: flex-end;
+                text-align: right;
+            }
+        }
+
+
+        /* 로그인 토스트 오버레이 */
+        .login-toast-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.45);
+            z-index: 1500;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .login-toast-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .login-toast-box {
+            padding: 1.3rem 2.4rem;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+            font-weight: 700;
+            color: var(--ink);
+            font-size: 1.35rem;
+            text-align: center;
+        }
+
+        #tagFilterButtons .btn.active {
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
+        }
+
+        /* === 온보딩 인트로 오버레이 === */
+        .tour-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.45);
+            z-index: 1550;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .tour-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .tour-box {
+            max-width: 420px;
+            width: 90%;
+            background: #ffffff;
+            padding: 1.8rem 2rem;
+            border-radius: 22px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.26);
+            text-align: center;
+        }
+
+        .tour-box-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: .3rem;
+            color: var(--ink);
+        }
+
+        .tour-box-body {
+            font-size: .95rem;
+            color: #4b5563;
+        }
+
+        /* === 단계별 코치마크 오버레이 === */
+        .tour-step-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1600;
+            pointer-events: none;
+        }
+
+        .tour-step-overlay.center-mode .tour-bubble {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+        }
+
+        .tour-step-overlay.hidden {
+            display: none;
+        }
+
+        .tour-step-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.45);
+        }
+
+        .tour-bubble {
+            position: relative;
+            z-index: 1601;
+            max-width: 640px;
+            /* 가로폭 약 1.5배로 확장 */
+            width: calc(100% - 2.5rem);
+            margin: 40px auto 26px auto;
+            /* 위에서 조금 내려오도록 */
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1rem 1.2rem 1rem 1.2rem;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+            pointer-events: auto;
+        }
+
+        .tour-bubble-arrow {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #ffffff;
+        }
+
+        .tour-step-label {
+            font-size: .75rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: .2rem;
+        }
+
+        .tour-chip-btn {
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            padding: .42rem .9rem;
+            font-weight: 600;
+            color: #334155;
+            background: #ffffff;
+            font-size: 0.85rem;
+        }
+
+        .tour-chip-btn-primary {
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+        }
+
+        .tour-highlight {
+            position: relative;
+            z-index: 1700 !important;
+            box-shadow: 0 0 0 4px rgba(242, 204, 143, 0.95);
+            animation: tourPulse 1.2s ease-in-out infinite;
+        }
+
+        @keyframes tourPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(242, 204, 143, 0.8);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(242, 204, 143, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(242, 204, 143, 0);
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <!-- ===== Top Bar (홈 색상/로고만, 설명 제거) ===== -->
-  <header class="topbar">
-    <div class="container py-3">
-      <div class="d-flex align-items-center justify-content-between gap-3">
-        <a href="index.html" class="brand-link d-flex align-items-center">
-          <span class="brand-mark"><i class="bi-file-earmark-text"></i></span>
-          <span class="fw-bold fs-4">Linder</span>
-        </a>
-
-        <div class="segmented" id="tabToggle" role="tablist" aria-label="읽음 토글">
-          <button class="btn active" data-tab="UNREAD">안 읽음</button>
-          <button class="btn" data-tab="read">읽음</button>
+    <!-- 로그인 토스트 -->
+    <div id="loginToast" class="login-toast-overlay">
+        <div class="login-toast-box">
+            안녕하세요, Linder입니다! 쿠키로 자동 로그인 하였습니다.
         </div>
-      </div>
     </div>
-  </header>
 
-  <!-- ===== 입력/정렬 컨트롤 (홈 톤 + 노란 포인트) ===== -->
-  <section class="section-controls section-padding">
-    <div class="container">
-      <div class="row g-3 align-items-center">
-        <div class="col-12 col-lg-6">
-          <div class="input-group">
-            <span class="input-group-text bg-white"><i class="bi-link-45deg"></i></span>
-            <input id="urlInput" type="url" class="form-control" placeholder="웹 URL을 입력하세요" />
-          </div>
+    <!-- 데모만 있을 때 사용법 소개 인트로 -->
+    <div id="tourIntro" class="tour-overlay hidden">
+        <div class="tour-box">
+            <div class="tour-box-title">등록하신 링크가 없군요</div>
+            <p class="tour-box-body mb-3">
+                Linder의 사용법을 예시 링크로 짧게 소개해드릴까요?<br />
+                아래 데모 카드를 기준으로 함께 한 바퀴만 돌아볼게요.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
+                <button id="tourSkipBtn" type="button" class="btn btn-outline-secondary btn-round px-4">
+                    괜찮아요
+                </button>
+                <button id="tourStartBtn" type="button" class="btn btn-primary btn-round px-4">
+                    소개해주세요
+                </button>
+            </div>
         </div>
+    </div>
 
-        <div class="col-6 col-lg-2">
-          <select id="topicSelect" class="form-select">
-            <option>자동 감지</option>
-            <option>교육</option>
-            <option>게임</option>
-            <option>패션</option>
-            <option>뷰티</option>
-            <option>스포츠</option>
-            <option>경제</option>
-            <option>IT</option>
-          </select>
+    <!-- 인트로를 건너뛴 사용자를 위한 안내 (Linder 사용법 버튼 강조) -->
+    <div id="tourReplayHint" class="tour-step-overlay hidden center-mode">
+        <div class="tour-bubble">
+            <div class="tour-bubble-arrow"></div>
+            <div class="tour-step-label">Linder 사용법 안내</div>
+            <div class="fw-bold mb-1">언제든지 사용법을 다시 볼 수 있어요</div>
+            <p class="small mb-3">
+                상단의 <strong>‘Linder 사용법’</strong> 버튼을 누르시면<br />
+                방금 건너뛴 소개 화면을 다시 확인하실 수 있습니다.<br />
+                <span class="text-muted">해당 버튼을 누르면 소개 화면을 확인하실 수 있습니다.</span>
+            </p>
+            <div class="d-flex justify-content-center">
+                <button id="tourHintCloseBtn" type="button" class="btn tour-chip-btn tour-chip-btn-primary">
+                    알겠습니다
+                </button>
+            </div>
         </div>
+    </div>
 
-        <!-- 숫자 대신 달력: 기본값 = 오늘+14 -->
-        <div class="col-6 col-lg-2">
-          <div class="input-group">
-            <span class="input-group-text bg-white"><i class="bi-calendar3"></i></span>
-            <input id="remindPicker" type="date" class="form-control" />
-          </div>
+    <!-- ===== Top Bar ===== -->
+    <header class="topbar">
+        <div class="container py-3">
+            <div class="d-flex align-items-center justify-content-between gap-3">
+                <a href="index.html" class="brand-link d-flex align-items-center">
+                    <span class="brand-mark"><i class="bi-file-earmark-text"></i></span>
+                    <span class="fw-bold fs-4">Linder</span>
+                </a>
+
+                <div class="segmented" id="tabToggle" role="tablist" aria-label="읽음 토글">
+                    <button class="btn active" data-tab="UNREAD">안 읽음</button>
+                    <button class="btn" data-tab="read">읽음</button>
+                </div>
+            </div>
         </div>
+    </header>
 
-        <div class="col-12 col-lg-2">
-          <button id="addBtn" class="btn btn-primary w-100 btn-round">추가</button>
+    <!-- ===== 입력/정렬 컨트롤 ===== -->
+    <section class="section-controls section-padding">
+        <div class="container">
+            <div class="row g-3 align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="bi-link-45deg"></i></span>
+                        <input id="urlInput" type="url" class="form-control" placeholder="웹 URL을 입력하세요" />
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <select id="topicSelect" class="form-select">
+                        <option>자동 감지</option>
+                        <option>교육</option>
+                        <option>게임</option>
+                        <option>패션</option>
+                        <option>뷰티</option>
+                        <option>스포츠</option>
+                        <option>경제</option>
+                        <option>IT</option>
+                    </select>
+                </div>
+
+                <!-- 숫자 대신 달력: 기본값 = 오늘+14 -->
+                <div class="col-6 col-lg-2">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="bi-calendar3"></i></span>
+                        <input id="remindPicker" type="date" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-2">
+                    <button id="addBtn" class="btn btn-primary w-100 btn-round">추가</button>
+                </div>
+
+                <!-- 정렬 · 보기 토글 + 카드 사용법 -->
+                <div class="col-12 mt-1">
+                    <div class="sort-view-toolbar">
+                        <!-- 왼쪽 절반: 정렬 -->
+                        <div class="sort-view-left">
+                            <span class="text-muted small">정렬</span>
+                            <div class="chips" id="sortToggle" aria-label="정렬">
+                                <button class="btn active" data-sort="date_desc">날짜(최신)</button>
+                                <button class="btn" data-sort="date_asc">날짜(오래된)</button>
+                                <button class="btn" data-sort="tag">태그</button>
+                            </div>
+                        </div>
+
+                        <!-- 가운데/오른쪽: 보기 -->
+                        <div class="sort-view-right">
+                            <span class="text-muted small">보기</span>
+                            <div class="chips" id="viewToggle" aria-label="보기열수">
+                                <button class="btn active" data-cols="1">1열</button>
+                                <button class="btn" data-cols="2">2열</button>
+                                <button class="btn" data-cols="3">3열</button>
+                            </div>
+                        </div>
+
+                        <!-- 카드 사용법 다시 보기 버튼 -->
+                        <div class="sort-view-help">
+                            <button id="tourReplayBtn" type="button" class="btn btn-primary btn-round linder-help-btn">
+                                Linder 사용법
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 정렬 토글 클릭 시 tagMode 처리 + 필터 렌더링 -->
+                <div class="col-12 mt-2" id="tagFilterRow" style="display:none;">
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <span class="text-muted small">태그 선택</span>
+                        <div id="tagFilterButtons" class="d-flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <small class="text-muted">
+                        ※ URL을 입력하면 실제 페이지의 정보를 바탕으로 AI가 제목과 요약을 저장합니다.
+                        링크를 하나라도 입력하시면 데모 링크들은 사라지며, 리마인드 날짜는 기본으로
+                        <strong>14일 뒤</strong>가 선택됩니다. 재로딩 해도 여러분의 링크 데이터는 사라지지 않으니 바로 사용해주세요!
+                    </small>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- 정렬 · 보기 토글 -->
-        <div class="col-12 mt-1">
-          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-            <div class="d-flex align-items-center gap-2">
-              <span class="text-muted small">정렬</span>
-              <div class="chips" id="sortToggle" aria-label="정렬">
-                <button class="btn active" data-sort="date_desc">날짜(최신)</button>
-                <button class="btn" data-sort="date_asc">날짜(오래된)</button>
-                <button class="btn" data-sort="tag">태그</button>
-              </div>
+    <!-- ===== 목록 ===== -->
+    <section class="section-padding">
+        <div class="container">
+            <div id="listRoot" class="cols-1"></div>
+
+            <div id="emptyState" class="text-center py-5 d-none">
+                <div class="empty-illustr"><i class="bi-book"></i></div>
+                <h5 class="mb-1" id="emptyTitle">아직 저장한 글이 없어요</h5>
+                <p class="text-muted">위에서 링크를 추가해보세요!</p>
             </div>
 
-            <div class="d-flex align-items-center gap-2">
-              <span class="text-muted small">보기</span>
-              <div class="chips" id="viewToggle" aria-label="보기열수">
-                <button class="btn active" data-cols="1">1열</button>
-                <button class="btn" data-cols="2">2열</button>
-                <button class="btn" data-cols="3">3열</button>
-              </div>
+            <!-- 문서 섹션 내부의 브랜드 블록 -->
+            <div class="brand-footer mt-5 p-4 text-center">
+                <div class="d-inline-flex align-items-center gap-2">
+                    <span class="brand-mark"><i class="bi-file-earmark-text"></i></span>
+                    <div class="text-start">
+                        <div class="fw-bold">Linder</div>
+                        <div class="small text-muted">ReadLater+</div>
+                    </div>
+                </div>
+                <div class="text-muted small mt-2">Copyright © Linder</div>
             </div>
-          </div>
         </div>
-        <!-- 정렬 토글 클릭 시 tagMode 처리 + 필터 렌더링 -->
-        <div class="col-12 mt-2" id="tagFilterRow" style="display:none;">
-          <div class="d-flex flex-wrap align-items-center gap-2">
-            <span class="text-muted small">태그 선택</span>
-            <div id="tagFilterButtons" class="d-flex flex-wrap gap-2"></div>
-          </div>
-        </div>
+    </section>
 
-
-        <div class="col-12">
-          <small class="text-muted">
-            ※ 현재 쿠키로 로그인 하셨습니다! URL을 입력하면 실제 페이지의 정보를 바탕으로 AI가 제목과 요약을 저장합니다.
-            링크를 하나라도 입력하시면 데모 링크는 사라지며, 리마인드 날짜는 기본으로 <strong>14일 뒤</strong>가 선택됩니다. 달력에서 변경할 수 있어요.
-          </small>
+    <!-- 단계별 코치마크 오버레이 -->
+    <div id="tourStepOverlay" class="tour-step-overlay hidden">
+        <div class="tour-bubble">
+            <div class="tour-bubble-arrow"></div>
+            <div class="tour-step-label">Linder 사용법 가이드</div>
+            <div id="tourTitle" class="fw-bold mb-1">제목</div>
+            <p id="tourBody" class="small mb-2">설명</p>
+            <p id="tourSub" class="small text-muted mb-3"></p>
+            <div class="d-flex justify-content-between gap-2">
+                <button id="tourCloseBtn" type="button" class="btn tour-chip-btn">
+                    그만 보기
+                </button>
+                <button id="tourNextBtn" type="button" class="btn tour-chip-btn tour-chip-btn-primary">
+                    다음 단계
+                </button>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
 
-  <!-- ===== 목록 ===== -->
-  <section class="section-padding">
-    <div class="container">
-      <div id="listRoot" class="cols-1"></div>
-
-      <div id="emptyState" class="text-center py-5 d-none">
-        <div class="empty-illustr"><i class="bi-book"></i></div>
-        <h5 class="mb-1" id="emptyTitle">아직 저장한 글이 없어요</h5>
-        <p class="text-muted">위에서 링크를 추가해보세요!</p>
-      </div>
-
-      <!-- 문서 섹션 내부의 브랜드 블록 (요청대로 유지) -->
-      <div class="brand-footer mt-5 p-4 text-center">
-        <div class="d-inline-flex align-items-center gap-2">
-          <span class="brand-mark"><i class="bi-file-earmark-text"></i></span>
-          <div class="text-start">
-            <div class="fw-bold">Linder</div>
-            <div class="small text-muted">ReadLater+</div>
-          </div>
-        </div>
-        <div class="text-muted small mt-2">Copyright © Linder</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- 홈과 동일한 파도 배경 색상 -->
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path fill="#81B29A" fill-opacity="1"
-      d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
-    </path>
-  </svg>
-  </footer>
-
-  <!-- ===== JS (기능 그대로 + 백엔드 연동) ===== -->
-  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    /* =========================
-       공통 유틸 (쿠키, 날짜)
-    ========================== */
-
-    function getCookieValue(name) {
-      const value = "; " + document.cookie;
-      const parts = value.split("; " + name + "=");
-      if (parts.length === 2) {
-        return parts.pop().split(";").shift();
-      }
-    }
-
-    function setCookieValue(name, value, days) {
-      let expires = "";
-      if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
-
-    function getUVfromCookie() {
-      const existingHash = getCookieValue("user");
-      if (existingHash) return existingHash;
-      const hash = Math.random().toString(36).substring(2, 8).toUpperCase();
-      setCookieValue("user", hash, 180);
-      return hash;
-    }
-
-    function todayISO() {
-      const d = new Date();
-      return d.toISOString().slice(0, 10);
-    }
-
-    function addDaysISO(days) {
-      const d = new Date();
-      d.setDate(d.getDate() + days);
-      return d.toISOString().slice(0, 10);
-    }
-
-    /* =========================
-       상태 & 유틸
-    ========================== */
-
-    let articles = [];                 // 서버에서 받아온 + 새로 추가한 데이터
-    let activeTab = "UNREAD";          // 'UNREAD' | 'read'
-    let sortMode = "date_desc";        // 'date_desc' | 'date_asc' | 'tag'
-    let layoutCols = 1;                // 1 | 2 | 3
-    let tagFilterActive = false;
-    let activeTagsForFilter = new Set();  // 선택된 태그들
-
-
-    const $ = (s, r = document) => r.querySelector(s);
-    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-
-    const host = (u) => { try { return new URL(u).hostname } catch { return "unknown" } };
-
-    const ALL_TAGS = [
-      "뉴스", "교육", "코미디", "일상", "게임", "음악", "영화", "스포츠", "패션", "뷰티", "기술", "음식", "여행", "건강", "과학", "역사",
-      "정치", "경제", "재테크", "자기계발", "예술", "반려동물", "환경", "리뷰", "공예", "취미", "오디오", "팟캐스트", "만화", "아동", "종교",
-      "문화", "쇼핑", "부동산", "법률", "의학", "IT", "문학", "시사", "조리", "힐링", "ASMR"
-    ];
-
-    // 비슷한 태그끼리 3~4개 정도 묶어서 같은 색을 쓰도록 그룹화
-    const cookTags = ["음식", "조리", "여행", "쇼핑", "리뷰", "힐링", "ASMR"];               // t-cook (따뜻한 오렌지톤)
-    const dlTags = ["기술", "IT", "경제", "재테크", "부동산", "법률", "뉴스", "시사"];        // t-dl (기술·디지털·경제)
-    const sciTags = ["과학", "교육", "역사", "자기계발", "정치", "문학"];                     // t-sci (학문·지식)
-    const devTags = ["게임", "음악", "영화", "코미디", "예술", "공예", "취미",
-      "만화", "오디오", "팟캐스트", "패션", "뷰티", "문화"];                  // t-dev (엔터·취미·라이프스타일)
-    const healthTags = ["건강", "환경", "의학", "스포츠", "반려동물", "아동"];                 // t-health (건강·라이프케어)
-    const etcTags = ["일상", "종교"];                                                         // t-etc (그 외)
-
-    const TAG_CLASS_MAP = {};
-
-    cookTags.forEach(t => TAG_CLASS_MAP[t] = "t-cook");
-    dlTags.forEach(t => TAG_CLASS_MAP[t] = "t-dl");
-    sciTags.forEach(t => TAG_CLASS_MAP[t] = "t-sci");
-    devTags.forEach(t => TAG_CLASS_MAP[t] = "t-dev");
-    healthTags.forEach(t => TAG_CLASS_MAP[t] = "t-health");
-    etcTags.forEach(t => TAG_CLASS_MAP[t] = "t-etc");
-
-    const tagClass = (t) => {
-      // ALL_TAGS 안에 있는 태그는 전부 여기서 색상이 매핑됨
-      return TAG_CLASS_MAP[t] || "t-etc";
-    };
-
-
-
-    const uniq = (arr) => [...new Set(arr)].slice(0, 3);
-
-    // 리마인드 기본값 = 오늘 + 14일
-    (function initRemindPicker() {
-      const p = $("#remindPicker");
-      const now = new Date();
-      const d = new Date(now); d.setDate(now.getDate() + 14);
-      p.value = d.toISOString().slice(0, 10);
-      p.min = now.toISOString().slice(0, 10);
-    })();
-
-    // Apps Script 엔드포인트 (index.html에서 쓰던 것과 동일하게 맞추기)
-    const addrScript = 'https://script.google.com/macros/s/AKfycbwHUTjWnUxfzURmCz7X8n_Ot38FqdtUgDAnjBjak6FNrXhiVxJZmQf8af-aFqfbUbfuDg/exec';
-
-
-    /* =========================
-       서버 통신: webs READ
-       - user_id == 나 OR is_demo == 1
-       - 서버에서 필터링해서 내려옴
-    ========================== */
-
-    async function loadArticlesFromServer() {
-      const userId = getUVfromCookie();
-
-      try {
-        const res = await axios.get(
-          addrScript + '?action=read&table=webs&user_id=' + encodeURIComponent(userId)
-        );
-        const list = res.data && res.data.data ? res.data.data : [];
-
-        // webs 시트 → articles 형식으로 맞추기
-        articles = list
-          .filter(row => row.status !== "2")   // 소프트 삭제된 것은 제외
-          .map(row => ({
-            id: String(row.id),
-            user_id: row.user_id,
-            is_demo: Number(row.is_demo) || 0,
-            url: row.url,
-            title: row.title,
-            summary: row.summary,
-            tags: row.tags ? String(row.tags).split(",").map(s => s.trim()).filter(Boolean) : [],
-            status: String(row.status),
-            added_at: row.added_at ? String(row.added_at).slice(0, 10) : todayISO(),
-            remind_at: row.remind_at ? String(row.remind_at).slice(0, 10) : ""
-          }));
-
-        render();
-      } catch (err) {
-        console.error('웹 목록 로드 실패', err);
-        // 실패해도 데모 없이 빈 상태로라도 동작하도록
-        articles = [];
-        render();
-      }
-    }
-
-    /* =========================
-       서버 통신: webs INSERT + Gemini
-       - 프론트에서 url, user_topic, remind_at, user_id 보내기
-       - 서버가 title/summary/tags 채워서 webs에 저장 후 JSON 반환
-    ========================== */
-
-    async function addArticle() {
-      const url = $("#urlInput").value.trim();
-      const sel = $("#topicSelect").value;            // "자동 감지" / 교육 / 게임 / 패션 / 뷰티 / 스포츠 / 경제 / IT
-      const remindAt = $("#remindPicker").value;
-      const userId = getUVfromCookie();
-
-      if (!url) return;
-
-      const btn = $("#addBtn");
-      btn.disabled = true;
-      btn.innerText = "추가 중...";
-
-      try {
-        const payload = {
-          user_id: userId,
-          url: url,
-          user_topic: sel,           // 사용자가 선택한 카테고리 (자동 감지 포함)
-          remind_at: remindAt
-        };
-
-        const res = await axios.get(
-          addrScript + '?action=insert_web'
-          + '&table=webs'
-          + '&data=' + encodeURIComponent(JSON.stringify(payload))
-        );
-
-        const record = res.data && res.data.data ? res.data.data : null;
-        if (!record) throw new Error("서버에서 data가 오지 않았습니다.");
-
-        const a = {
-          id: String(record.id),
-          user_id: record.user_id,
-          is_demo: Number(record.is_demo) || 0,
-          url: record.url,
-          title: record.title,
-          summary: record.summary,
-          tags: record.tags ? String(record.tags).split(",").map(s => s.trim()).filter(Boolean) : [],
-          status: String(record.status),
-          added_at: record.added_at || todayISO(),
-          remind_at: record.remind_at || ""
-        };
-
-        articles.unshift(a);
-        $("#urlInput").value = "";
-        render();
-      } catch (err) {
-        console.error("링크 추가 중 오류", err);
-        alert("링크 추가 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
-      } finally {
-        btn.disabled = false;
-        btn.innerText = "추가";
-      }
-    }
-
-    /* =========================
-       서버 통신: webs UPDATE (status만)
-    ========================== */
-
-    async function updateArticleStatusOnServer(id, newStatus) {
-      try {
-        const data = { status: newStatus };
-
-        await axios.get(
-          addrScript
-          + '?action=update'
-          + '&table=webs'
-          + '&id=' + encodeURIComponent(id)
-          + '&data=' + encodeURIComponent(JSON.stringify(data))
-        );
-      } catch (err) {
-        console.error("상태 업데이트 실패 (id=" + id + ")", err);
-      }
-    }
-
-
-    /* =========================
-       동작: 읽음 / 삭제 / 복사
-    ========================== */
-
-    function markAsRead(id) {
-      articles = articles.map(a => a.id === id ? { ...a, status: "0" } : a);
-      render();
-
-      const a = articles.find(x => x.id === id);
-      if (!a) return;
-      if (Number(a.is_demo) === 1) {
-        // demo면 서버에 반영 안 함
-        return;
-      }
-      updateArticleStatusOnServer(id, "0");
-    }
-
-    function softDelete(id) {
-      articles = articles.map(a => a.id === id ? { ...a, status: "2" } : a);
-      render();
-
-      const a = articles.find(x => x.id === id);
-      if (!a) return;
-      if (Number(a.is_demo) === 1) {
-        return;
-      }
-      updateArticleStatusOnServer(id, "2");
-    }
-
-
-    async function copyUrl(url, btn) {
-      try {
-        await navigator.clipboard.writeText(url);
-        const prev = btn.innerHTML;
-        btn.innerHTML = '<i class="bi-check-lg me-1"></i>복사됨';
-        setTimeout(() => btn.innerHTML = prev, 900);
-      } catch {
-        // quietly ignore
-      }
-    }
-
-    /* =========================
-       정렬
-    ========================== */
-
-    function sortArticles(list) {
-      // 숫자로 비교할 수 있게 id를 Number로 캐스팅
-      const toNum = (x) => {
-        const n = Number(x);
-        return isNaN(n) ? 0 : n;
-      };
-
-      if (sortMode === "date_desc") {
-        list.sort((a, b) => {
-          if (a.added_at === b.added_at) {
-            // 같은 날짜면 id가 큰 순 (내림차순)
-            return toNum(b.id) - toNum(a.id);
-          }
-          // 날짜 최신순: 큰 날짜가 먼저
-          return a.added_at < b.added_at ? 1 : -1;
-        });
-
-      } else if (sortMode === "date_asc") {
-        list.sort((a, b) => {
-          if (a.added_at === b.added_at) {
-            // 같은 날짜면 id가 작은 순
-            return toNum(a.id) - toNum(b.id);
-          }
-          // 날짜 오래된 순: 작은 날짜가 먼저
-          return a.added_at > b.added_at ? 1 : -1;
-        });
-
-      } else if (sortMode === "tag") {
-        list.sort((a, b) => {
-          const ta = (a.tags && a.tags[0]) || "";
-          const tb = (b.tags && b.tags[0]) || "";
-          if (ta === tb) {
-            // 태그도 같으면 id 순으로
-            return toNum(a.id) - toNum(b.id);
-          }
-          return ta > tb ? 1 : -1;
-        });
-      }
-
-      return list;
-    }
-
-    $$("#sortToggle .btn").forEach(btn => btn.addEventListener("click", () => {
-      sortMode = btn.dataset.sort;
-
-      // sort 버튼 active 처리
-      $$("#sortToggle .btn").forEach(b => b.classList.toggle("active", b === btn));
-
-      if (sortMode === "tag") {
-        tagFilterActive = true;
-        buildTagFilterFromArticles();
-      } else {
-        tagFilterActive = false;
-        $("#tagFilterRow").style.display = "none";
-      }
-
-      render();
-    }));
-
-    // 현재 articles에서 태그 모음 → 버튼 생성
-    function buildTagFilterFromArticles() {
-      // 현재 articles에서 태그 모두 수집
-      const tagSet = new Set();
-      articles.forEach(a => {
-        (a.tags || []).forEach(t => tagSet.add(t));
-      });
-
-      const tags = Array.from(tagSet);
-      const row = $("#tagFilterRow");
-      const container = $("#tagFilterButtons");
-      container.innerHTML = "";
-
-      if (tags.length === 0) {
-        row.style.display = "none";
-        activeTagsForFilter = new Set();
-        return;
-      }
-
-      // 기본: 모든 태그 선택 상태
-      activeTagsForFilter = new Set(tags);
-
-      tags.forEach(t => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "btn btn-sm btn-outline-secondary";
-        btn.dataset.tag = t;
-        btn.textContent = t;
-        btn.classList.add("active"); // UI상 선택됨 표시
-
-        btn.addEventListener("click", () => {
-          if (activeTagsForFilter.has(t)) {
-            activeTagsForFilter.delete(t);
-            btn.classList.remove("active");
-          } else {
-            activeTagsForFilter.add(t);
-            btn.classList.add("active");
-          }
-          render();
-        });
-
-        container.appendChild(btn);
-      });
-
-      row.style.display = "";
-    }
-
-
-
-
-    /* =========================
-       렌더
-    ========================== */
-
-    function render() {
-      const root = $("#listRoot");
-      root.classList.remove("cols-1", "cols-2", "cols-3");
-      root.classList.add(`cols-${layoutCols}`);
-      root.innerHTML = "";
-
-      // 🔹 실제 유저 링크가 하나라도 있는지 확인
-      const hasRealArticle = articles.some(a => Number(a.is_demo) === 0);
-
-      // 🔹 탭 필터가 선택되었다면
-      let list = articles.filter(a => {
-        if (hasRealArticle && Number(a.is_demo) === 1) return false;
-
-        const tabMatch =
-          (a.status === "1" && activeTab === "UNREAD") ||
-          (a.status === "0" && activeTab === "read");
-
-        if (!tabMatch) return false;
-
-        // 🔹 태그 필터가 켜져 있고, activeTagsForFilter가 비어 있지 않다면
-        if (tagFilterActive && activeTagsForFilter.size > 0) {
-          const tags = a.tags || [];
-          // 문서의 태그들 중 하나라도 activeTags에 있으면 통과
-          const hasActive = tags.some(t => activeTagsForFilter.has(t));
-          if (!hasActive) return false;
+    <!-- 파도 배경 -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#81B29A" fill-opacity="1"
+            d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+        </path>
+    </svg>
+
+    <!-- ===== JS ===== -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /* =========================
+           공통 유틸 (쿠키, 날짜)
+        ========================== */
+
+        function getCookieValue(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) {
+                return parts.pop().split(";").shift();
+            }
         }
 
-        return true;
-      });
+        function setCookieValue(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
 
-      const filtered = sortArticles(list);
+        function getUVfromCookie() {
+            const existingHash = getCookieValue("user");
+            if (existingHash) return existingHash;
+            const hash = Math.random().toString(36).substring(2, 8).toUpperCase();
+            setCookieValue("user", hash, 180);
+            return hash;
+        }
 
-      $("#emptyState").classList.toggle("d-none", filtered.length !== 0);
-      $("#emptyTitle").innerText = activeTab === "UNREAD" ? "아직 저장한 글이 없어요" : "읽은 글이 없어요";
+        function todayISO() {
+            const d = new Date();
+            return d.toISOString().slice(0, 10);
+        }
 
-      filtered.forEach(a => {
-        const card = document.createElement("div");
-        card.className = "doc-card p-4";
+        function addDaysISO(days) {
+            const d = new Date();
+            d.setDate(d.getDate() + days);
+            return d.toISOString().slice(0, 10);
+        }
 
-        const tagsHtml = (a.tags || []).slice(0, 3).map(t =>
-          `<span class="tag ${tagClass(t)}">${t}</span>`
-        ).join(" ");
+        /* =========================
+           상태 & 유틸
+        ========================== */
 
-        card.innerHTML = `
+        let articles = [];                 // 서버에서 받아온 + 새로 추가한 데이터
+        let activeTab = "UNREAD";          // 'UNREAD' | 'read'
+        let sortMode = "date_desc";        // 'date_desc' | 'date_asc' | 'tag'
+        let layoutCols = 1;                // 1 | 2 | 3
+        let tagFilterActive = false;
+        let activeTagsForFilter = new Set();  // 선택된 태그들
+
+        // 온보딩 투어 상태
+        let tourRunning = false;
+        let tourStep = 0; // 1~4단계
+        const TOUR_DONE_KEY = "linder_tour_v2_done";
+
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+        const host = (u) => { try { return new URL(u).hostname } catch { return "unknown" } };
+
+        const ALL_TAGS = [
+            "뉴스", "교육", "코미디", "일상", "게임", "음악", "영화", "스포츠", "패션", "뷰티", "기술", "음식", "여행", "건강", "과학", "역사",
+            "정치", "경제", "재테크", "자기계발", "예술", "반려동물", "환경", "리뷰", "공예", "취미", "오디오", "팟캐스트", "만화", "아동", "종교",
+            "문화", "쇼핑", "부동산", "법률", "의학", "IT", "문학", "시사", "조리", "힐링", "ASMR"
+        ];
+
+        // 비슷한 태그끼리 그룹화
+        const cookTags = ["음식", "조리", "여행", "쇼핑", "리뷰", "힐링", "ASMR"];         // t-cook
+        const dlTags = ["기술", "IT", "경제", "재테크", "부동산", "법률", "뉴스", "시사"];  // t-dl
+        const sciTags = ["과학", "교육", "역사", "자기계발", "정치", "문학"];               // t-sci
+        const devTags = ["게임", "음악", "영화", "코미디", "예술", "공예", "취미",
+            "만화", "오디오", "팟캐스트", "패션", "뷰티", "문화"];                          // t-dev
+        const healthTags = ["건강", "환경", "의학", "스포츠", "반려동물", "아동"];           // t-health
+        const etcTags = ["일상", "종교"];                                                   // t-etc
+
+        const TAG_CLASS_MAP = {};
+        cookTags.forEach(t => TAG_CLASS_MAP[t] = "t-cook");
+        dlTags.forEach(t => TAG_CLASS_MAP[t] = "t-dl");
+        sciTags.forEach(t => TAG_CLASS_MAP[t] = "t-sci");
+        devTags.forEach(t => TAG_CLASS_MAP[t] = "t-dev");
+        healthTags.forEach(t => TAG_CLASS_MAP[t] = "t-health");
+        etcTags.forEach(t => TAG_CLASS_MAP[t] = "t-etc");
+
+        const tagClass = (t) => TAG_CLASS_MAP[t] || "t-etc";
+
+        const uniq = (arr) => [...new Set(arr)].slice(0, 3);
+
+        // 리마인드 기본값 = 오늘 + 14일
+        (function initRemindPicker() {
+            const p = $("#remindPicker");
+            const now = new Date();
+            const d = new Date(now); d.setDate(now.getDate() + 14);
+            p.value = d.toISOString().slice(0, 10);
+            p.min = now.toISOString().slice(0, 10);
+        })();
+
+        // Apps Script 엔드포인트
+        const addrScript = 'https://script.google.com/macros/s/AKfycbwHUTjWnUxfzURmCz7X8n_Ot38FqdtUgDAnjBjak6FNrXhiVxJZmQf8af-aFqfbUbfuDg/exec';
+
+        function hasOnlyDemoArticles() {
+            const hasReal = articles.some(a => Number(a.is_demo) === 0);
+            const hasDemo = articles.some(a => Number(a.is_demo) === 1);
+            return !hasReal && hasDemo;
+        }
+
+        /* =========================
+           서버 통신: webs READ
+        ========================== */
+
+        async function loadArticlesFromServer() {
+            const userId = getUVfromCookie();
+
+            try {
+                const res = await axios.get(
+                    addrScript + '?action=read&table=webs&user_id=' + encodeURIComponent(userId)
+                );
+                const list = res.data && res.data.data ? res.data.data : [];
+
+                articles = list
+                    .filter(row => row.status !== "2")   // 소프트 삭제 제외
+                    .map(row => ({
+                        id: String(row.id),
+                        user_id: row.user_id,
+                        is_demo: Number(row.is_demo) || 0,
+                        url: row.url,
+                        title: row.title,
+                        summary: row.summary,
+                        tags: row.tags ? String(row.tags).split(",").map(s => s.trim()).filter(Boolean) : [],
+                        status: String(row.status),
+                        added_at: row.added_at ? String(row.added_at).slice(0, 10) : todayISO(),
+                        remind_at: row.remind_at ? String(row.remind_at).slice(0, 10) : ""
+                    }));
+
+                render();
+                // 데모만 있을 때 온보딩 인트로
+                maybeShowTourIntro();
+            } catch (err) {
+                console.error('웹 목록 로드 실패', err);
+                articles = [];
+                render();
+            }
+        }
+
+        /* =========================
+           서버 통신: webs INSERT + Gemini
+        ========================== */
+
+        async function addArticle() {
+            const url = $("#urlInput").value.trim();
+            const sel = $("#topicSelect").value;
+            const remindAt = $("#remindPicker").value;
+            const userId = getUVfromCookie();
+
+            if (!url) return;
+
+            const btn = $("#addBtn");
+            btn.disabled = true;
+            btn.innerText = "추가 중...";
+
+            try {
+                const payload = {
+                    user_id: userId,
+                    url: url,
+                    user_topic: sel,
+                    remind_at: remindAt
+                };
+
+                const res = await axios.get(
+                    addrScript + '?action=insert_web'
+                    + '&table=webs'
+                    + '&data=' + encodeURIComponent(JSON.stringify(payload))
+                );
+
+                const record = res.data && res.data.data ? res.data.data : null;
+                if (!record) throw new Error("서버에서 data가 오지 않았습니다.");
+
+                const a = {
+                    id: String(record.id),
+                    user_id: record.user_id,
+                    is_demo: Number(record.is_demo) || 0,
+                    url: record.url,
+                    title: record.title,
+                    summary: record.summary,
+                    tags: record.tags ? String(record.tags).split(",").map(s => s.trim()).filter(Boolean) : [],
+                    status: String(record.status),
+                    added_at: record.added_at || todayISO(),
+                    remind_at: record.remind_at || ""
+                };
+
+                articles.unshift(a);
+                $("#urlInput").value = "";
+                render();
+            } catch (err) {
+                console.error("링크 추가 중 오류", err);
+                alert("링크 추가 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "추가";
+            }
+        }
+
+        /* =========================
+           서버 통신: webs UPDATE (status만)
+        ========================== */
+
+        async function updateArticleStatusOnServer(id, newStatus) {
+            try {
+                const data = { status: newStatus };
+                await axios.get(
+                    addrScript
+                    + '?action=update'
+                    + '&table=webs'
+                    + '&id=' + encodeURIComponent(id)
+                    + '&data=' + encodeURIComponent(JSON.stringify(data))
+                );
+            } catch (err) {
+                console.error("상태 업데이트 실패 (id=" + id + ")", err);
+            }
+        }
+
+        /* =========================
+           동작: 읽음 / 삭제 / 복사
+        ========================== */
+
+        function markAsRead(id) {
+            articles = articles.map(a => a.id === id ? { ...a, status: "0" } : a);
+            render();
+
+            const a = articles.find(x => x.id === id);
+            if (a && Number(a.is_demo) !== 1) {
+                updateArticleStatusOnServer(id, "0");
+            }
+
+            // 투어 2단계에서 "읽음으로 표시"를 누른 경우 → 3단계로 진행
+            if (tourRunning && tourStep === 2) {
+                tourStep = 3;
+                showTourStep();
+            }
+        }
+
+        function softDelete(id) {
+            articles = articles.map(a => a.id === id ? { ...a, status: "2" } : a);
+            render();
+
+            const a = articles.find(x => x.id === id);
+            if (a && Number(a.is_demo) !== 1) {
+                updateArticleStatusOnServer(id, "2");
+            }
+        }
+
+        async function copyUrl(url, btn) {
+            try {
+                await navigator.clipboard.writeText(url);
+                const prev = btn.innerHTML;
+                btn.innerHTML = '<i class="bi-check-lg me-1"></i>복사됨';
+                setTimeout(() => btn.innerHTML = prev, 900);
+            } catch {
+                // quietly ignore
+            }
+        }
+
+        /* =========================
+           정렬
+        ========================== */
+
+        function sortArticles(list) {
+            const toNum = (x) => {
+                const n = Number(x);
+                return isNaN(n) ? 0 : n;
+            };
+
+            if (sortMode === "date_desc") {
+                list.sort((a, b) => {
+                    if (a.added_at === b.added_at) {
+                        return toNum(b.id) - toNum(a.id);
+                    }
+                    return a.added_at < b.added_at ? 1 : -1;
+                });
+
+            } else if (sortMode === "date_asc") {
+                list.sort((a, b) => {
+                    if (a.added_at === b.added_at) {
+                        return toNum(a.id) - toNum(b.id);
+                    }
+                    return a.added_at > b.added_at ? 1 : -1;
+                });
+
+            } else if (sortMode === "tag") {
+                list.sort((a, b) => {
+                    const ta = (a.tags && a.tags[0]) || "";
+                    const tb = (b.tags && b.tags[0]) || "";
+                    if (ta === tb) {
+                        return toNum(a.id) - toNum(b.id);
+                    }
+                    return ta > tb ? 1 : -1;
+                });
+            }
+
+            return list;
+        }
+
+        $$("#sortToggle .btn").forEach(btn => btn.addEventListener("click", () => {
+            sortMode = btn.dataset.sort;
+
+            $$("#sortToggle .btn").forEach(b => b.classList.toggle("active", b === btn));
+
+            if (sortMode === "tag") {
+                tagFilterActive = true;
+                buildTagFilterFromArticles();
+            } else {
+                tagFilterActive = false;
+                $("#tagFilterRow").style.display = "none";
+            }
+
+            render();
+        }));
+
+        function buildTagFilterFromArticles() {
+            const tagSet = new Set();
+            articles.forEach(a => {
+                (a.tags || []).forEach(t => tagSet.add(t));
+            });
+
+            const tags = Array.from(tagSet);
+            const row = $("#tagFilterRow");
+            const container = $("#tagFilterButtons");
+            container.innerHTML = "";
+
+            if (tags.length === 0) {
+                row.style.display = "none";
+                activeTagsForFilter = new Set();
+                return;
+            }
+
+            activeTagsForFilter = new Set(tags);
+
+            tags.forEach(t => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "btn btn-sm btn-outline-secondary";
+                btn.dataset.tag = t;
+                btn.textContent = t;
+                btn.classList.add("active");
+
+                btn.addEventListener("click", () => {
+                    if (activeTagsForFilter.has(t)) {
+                        activeTagsForFilter.delete(t);
+                        btn.classList.remove("active");
+                    } else {
+                        activeTagsForFilter.add(t);
+                        btn.classList.add("active");
+                    }
+                    render();
+                });
+
+                container.appendChild(btn);
+            });
+
+            row.style.display = "";
+        }
+
+        /* =========================
+           렌더
+        ========================== */
+
+        function render() {
+            const root = $("#listRoot");
+            root.classList.remove("cols-1", "cols-2", "cols-3");
+            root.classList.add(`cols-${layoutCols}`);
+            root.innerHTML = "";
+
+            const hasRealArticle = articles.some(a => Number(a.is_demo) === 0);
+
+            let list = articles.filter(a => {
+                if (hasRealArticle && Number(a.is_demo) === 1) return false;
+
+                const tabMatch =
+                    (a.status === "1" && activeTab === "UNREAD") ||
+                    (a.status === "0" && activeTab === "read");
+
+                if (!tabMatch) return false;
+
+                if (tagFilterActive && activeTagsForFilter.size > 0) {
+                    const tags = a.tags || [];
+                    const hasActive = tags.some(t => activeTagsForFilter.has(t));
+                    if (!hasActive) return false;
+                }
+
+                return true;
+            });
+
+            const filtered = sortArticles(list);
+
+            $("#emptyState").classList.toggle("d-none", filtered.length !== 0);
+            $("#emptyTitle").innerText = activeTab === "UNREAD" ? "아직 저장한 글이 없어요" : "읽은 글이 없어요";
+
+            filtered.forEach((a, idx) => {
+                const card = document.createElement("div");
+                card.className = "doc-card p-4";
+
+                const tagsHtml = (a.tags || []).slice(0, 3).map(t =>
+                    `<span class="tag ${tagClass(t)}">${t}</span>`
+                ).join(" ");
+
+                const isFirstCard = idx === 0;
+                const openBtnData = isFirstCard ? ' data-tour="open"' : '';
+                const readBtnData = isFirstCard ? ' data-tour="read"' : '';
+
+                card.innerHTML = `
           <div class="d-flex flex-column flex-xl-row gap-3">
             <div class="flex-grow-1">
-              <div class="d-flex align-items-center gap-2 mb-2">
+              <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
                 <i class="bi-globe text-muted"></i>
                 <span class="text-muted small">${host(a.url)}</span>
                 <div class="ms-1 d-flex gap-1 flex-wrap">${tagsHtml}</div>
@@ -863,64 +1161,281 @@
                 <a class="text-decoration-none" target="_blank" rel="noopener noreferrer" href="${a.url}">${a.title}</a>
               </h5>
               <p class="text-muted mb-3">${a.summary}</p>
-              <div class="d-flex gap-3 small text-muted">
+              <div class="d-flex gap-3 small text-muted flex-wrap">
                 <span>추가: ${a.added_at}</span>
                 ${a.remind_at ? `<span>리마인드: ${a.remind_at}</span>` : ``}
               </div>
             </div>
 
-            <div class="d-flex flex-xl-column gap-2">
-              <a class="btn btn-outline-primary btn-round action-btn" target="_blank" rel="noopener noreferrer" href="${a.url}">
+            <div class="d-flex flex-column gap-2">
+              <a class="btn btn-outline-primary btn-round action-btn"
+                 ${openBtnData}
+                 target="_blank" rel="noopener noreferrer" href="${a.url}">
                 <i class="bi-box-arrow-up-right me-1"></i>열기
               </a>
 
               ${a.status === "1"
-            ? `<button class="btn btn-primary btn-round action-btn" data-act="read"><i class="bi-check2 me-1"></i>읽음으로 표시</button>`
-            : `<button class="btn btn-danger btn-round action-btn" data-act="delete"><i class="bi-trash me-1"></i>문서 삭제</button>`
-          }
+                        ? `<button class="btn btn-primary btn-round action-btn"
+                             ${readBtnData}
+                             data-act="read">
+                      <i class="bi-check2 me-1"></i>읽음으로 표시
+                     </button>`
+                        : `<button class="btn btn-danger btn-round action-btn" data-act="delete">
+                      <i class="bi-trash me-1"></i>문서 삭제
+                     </button>`
+                    }
 
-              <button class="btn btn-outline-secondary btn-round action-btn" data-act="copy"><i class="bi-clipboard me-1"></i>복사</button>
+              <button class="btn btn-outline-secondary btn-round action-btn" data-act="copy">
+                <i class="bi-clipboard me-1"></i>복사
+              </button>
             </div>
           </div>
         `;
 
-        const secondBtn = card.querySelector('[data-act="read"],[data-act="delete"]');
-        if (secondBtn) {
-          if (a.status === "1") secondBtn.addEventListener("click", () => markAsRead(a.id));
-          else secondBtn.addEventListener("click", () => softDelete(a.id));
+                const secondBtn = card.querySelector('[data-act="read"],[data-act="delete"]');
+                if (secondBtn) {
+                    if (a.status === "1") secondBtn.addEventListener("click", () => markAsRead(a.id));
+                    else secondBtn.addEventListener("click", () => softDelete(a.id));
+                }
+
+                const copyBtn = card.querySelector('[data-act="copy"]');
+                copyBtn.addEventListener("click", (e) => copyUrl(a.url, e.currentTarget));
+
+                root.appendChild(card);
+            });
+
+            // 토글 UI sync
+            $$("#tabToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.tab === activeTab));
+            $$("#sortToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.sort === sortMode));
+            $$("#viewToggle .btn").forEach(b => b.classList.toggle("active", Number(b.dataset.cols) === layoutCols));
         }
-        const copyBtn = card.querySelector('[data-act="copy"]');
-        copyBtn.addEventListener("click", (e) => copyUrl(a.url, e.currentTarget));
 
-        root.appendChild(card);
-      });
+        /* =========================
+           온보딩 투어 로직
+        ========================== */
 
-      // 토글 UI sync
-      $$("#tabToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.tab === activeTab));
-      $$("#sortToggle .btn").forEach(b => b.classList.toggle("active", b.dataset.sort === sortMode));
-      $$("#viewToggle .btn").forEach(b => b.classList.toggle("active", Number(b.dataset.cols) === layoutCols));
-    }
+        function clearTourHighlight() {
+            $$(".tour-highlight").forEach(el => el.classList.remove("tour-highlight"));
+        }
 
-    /* =========================
-       이벤트 바인딩
-    ========================== */
+        function startTour() {
+            tourRunning = true;
+            tourStep = 1;
+            showTourStep();
+        }
 
-    $("#addBtn").addEventListener("click", addArticle);
+        function endTour() {
+            tourRunning = false;
+            tourStep = 0;
+            clearTourHighlight();
+            const ov = $("#tourStepOverlay");
+            if (ov) ov.classList.add("hidden");
+        }
 
-    $$("#tabToggle .btn").forEach(btn => btn.addEventListener("click", () => {
-      activeTab = btn.dataset.tab; render();
-    }));
-    // $$("#sortToggle .btn").forEach(btn => btn.addEventListener("click", () => {
-    //   sortMode = btn.dataset.sort; render();
-    // }));
-    $$("#viewToggle .btn").forEach(btn => btn.addEventListener("click", () => {
-      layoutCols = Number(btn.dataset.cols); render();
-    }));
+        function showTourStep() {
+            const ov = $("#tourStepOverlay");
+            if (!ov) return;
+            clearTourHighlight();
+            ov.classList.remove("hidden");
+            ov.classList.remove("center-mode");
 
-    // 초기 로드
-    loadArticlesFromServer();
+            const titleEl = $("#tourTitle");
+            const bodyEl = $("#tourBody");
+            const subEl = $("#tourSub");
 
-  </script>
+            if (tourStep === 1 || tourStep === 2 || tourStep === 4) {
+                activeTab = "UNREAD";
+                render();
+            }
+
+            if (tourStep === 1) {
+                const openBtn = document.querySelector('[data-tour="open"]');
+                if (openBtn) {
+                    openBtn.classList.add("tour-highlight");
+                    openBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+                titleEl.textContent = "1. 저장된 글 열기";
+                bodyEl.textContent = "오른쪽의 ‘열기’ 버튼을 누르면, 저장된 링크를 새 탭에서 바로 읽을 수 있어요.";
+                subEl.textContent = "한 번 눌러서 실제 페이지를 열어보고, 다시 이 탭으로 돌아와도 괜찮습니다.";
+
+            } else if (tourStep === 2) {
+                const readBtn = document.querySelector('[data-tour="read"]');
+                if (readBtn) {
+                    readBtn.classList.add("tour-highlight");
+                    readBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+                titleEl.textContent = "2. 읽은 글 정리하기";
+                bodyEl.textContent = "확인한 글은 ‘읽음으로 표시’를 눌러 읽음 목록으로 숨길 수 있습니다.";
+                subEl.textContent = "지금 이 버튼을 직접 눌러보면, 다음 단계에서 읽음 탭으로 옮겨진 것을 함께 확인합니다.";
+
+            } else if (tourStep === 3) {
+                activeTab = "read";
+                render();
+                const readTabBtn = document.querySelector('#tabToggle .btn[data-tab="read"]');
+                if (readTabBtn) readTabBtn.classList.add("tour-highlight");
+
+                const firstReadCard = $("#listRoot .doc-card");
+                if (firstReadCard) {
+                    firstReadCard.classList.add("tour-highlight");
+                    firstReadCard.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+
+                titleEl.textContent = "3. 읽은 글 한눈에 보기";
+                bodyEl.textContent = "방금 표시한 글은 ‘읽음’ 탭에서 따로 모아서 볼 수 있어요.";
+                subEl.textContent = "읽은 글을 모아두고, 안 읽음 탭에는 지금 읽고 싶은 링크만 남겨둘 수 있습니다.";
+
+            } else if (tourStep === 4) {
+                activeTab = "UNREAD";
+                render();
+
+                // 이 단계에서는 카드(설명)를 화면 중앙에 띄우기
+                ov.classList.add("center-mode");
+
+                const unreadTabBtn = document.querySelector('#tabToggle .btn[data-tab="UNREAD"]');
+                if (unreadTabBtn) unreadTabBtn.classList.add("tour-highlight");
+
+                const urlInput = $("#urlInput");
+                if (urlInput) {
+                    urlInput.classList.add("tour-highlight");
+                    urlInput.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+
+                const remindPicker = $("#remindPicker");
+                if (remindPicker) {
+                    remindPicker.classList.add("tour-highlight");
+                }
+
+                const addBtn = $("#addBtn");
+                if (addBtn) {
+                    addBtn.classList.add("tour-highlight");
+                }
+
+                titleEl.textContent = "4. 이제 나만의 링크를 추가해보세요";
+                bodyEl.textContent = "이 입력창에 웹 URL을 붙여넣으면, Linder가 제목·요약·태그를 자동으로 채워 저장합니다.";
+                subEl.textContent = "첫 링크를 저장하는 순간, 이 데모 웹들은 사라지고 나만의 Linder가 시작됩니다.";
+
+            } else {
+                endTour();
+            }
+        }
+
+        function maybeShowTourIntro() {
+            if (!hasOnlyDemoArticles()) return;
+            if (localStorage.getItem(TOUR_DONE_KEY) === "1") return;
+
+            const intro = $("#tourIntro");
+            if (!intro) return;
+
+            // 로그인 토스트(2초) 이후 살짝 딜레이 후 등장
+            setTimeout(() => {
+                intro.classList.remove("hidden");
+            }, 2300);
+        }
+
+
+        /* =========================
+           이벤트 바인딩
+        ========================== */
+
+        $("#addBtn").addEventListener("click", addArticle);
+
+        $$("#tabToggle .btn").forEach(btn => btn.addEventListener("click", () => {
+            activeTab = btn.dataset.tab;
+            render();
+        }));
+
+        $$("#viewToggle .btn").forEach(btn => btn.addEventListener("click", () => {
+            layoutCols = Number(btn.dataset.cols);
+            render();
+        }));
+
+        // 초기 로드
+        loadArticlesFromServer();
+
+        // 로그인 토스트 1.5초 후 사라지기
+        const loginToast = document.getElementById("loginToast");
+        if (loginToast) {
+            setTimeout(() => {
+                loginToast.classList.add("hide");
+            }, 1500);
+        }
+
+        // 온보딩 인트로 버튼
+        const introEl = $("#tourIntro");
+        if (introEl) {
+            const skipBtn = $("#tourSkipBtn");
+            const startBtn = $("#tourStartBtn");
+            if (skipBtn) {
+                skipBtn.addEventListener("click", () => {
+                    introEl.classList.add("hidden");
+                    localStorage.setItem(TOUR_DONE_KEY, "1");
+
+                    // 괜찮아요를 누른 직후, Linder 사용법 버튼을 강조하고 안내 카드 띄우기
+                    const replayBtn = $("#tourReplayBtn");
+                    const hintOverlay = $("#tourReplayHint");
+                    if (replayBtn && hintOverlay) {
+                        replayBtn.classList.add("tour-highlight");
+                        hintOverlay.classList.remove("hidden");
+                    }
+                });
+            }
+            if (startBtn) {
+                startBtn.addEventListener("click", () => {
+                    introEl.classList.add("hidden");
+                    localStorage.setItem(TOUR_DONE_KEY, "1");
+                    startTour();
+                });
+            }
+        }
+
+        const hintOverlay = $("#tourReplayHint");
+        const hintCloseBtn = $("#tourHintCloseBtn");
+        if (hintOverlay && hintCloseBtn) {
+            hintCloseBtn.addEventListener("click", () => {
+                hintOverlay.classList.add("hidden");
+                const replayBtn = $("#tourReplayBtn");
+                if (replayBtn) {
+                    replayBtn.classList.remove("tour-highlight");
+                }
+            });
+        }
+
+        // 코치마크 버튼
+        const tourCloseBtn = $("#tourCloseBtn");
+        const tourNextBtn = $("#tourNextBtn");
+
+        if (tourCloseBtn) {
+            tourCloseBtn.addEventListener("click", () => {
+                endTour();
+            });
+        }
+
+        if (tourNextBtn) {
+            tourNextBtn.addEventListener("click", () => {
+                if (!tourRunning) return;
+                tourStep += 1;
+                if (tourStep > 4) {
+                    endTour();
+                } else {
+                    showTourStep();
+                }
+            });
+        }
+
+        // "카드 사용법 보기" 버튼: 인트로 없이 바로 투어 다시 보기
+        const tourReplayBtn = $("#tourReplayBtn");
+        if (tourReplayBtn) {
+            tourReplayBtn.addEventListener("click", () => {
+                if (!articles.length) {
+                    alert("투어를 보시려면 먼저 예시 링크나 실제 링크가 한 개 이상 있어야 합니다.");
+                    return;
+                }
+                tourRunning = false;
+                tourStep = 0;
+                startTour();
+            });
+        }
+    </script>
 </body>
 
 </html>
